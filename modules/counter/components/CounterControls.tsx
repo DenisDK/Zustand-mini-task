@@ -7,13 +7,13 @@ const CounterControls = () => {
   const { increment, decrement, reset } = useCounterStore();
   return (
     <div className="flex gap-5 mt-5">
-      <Button onClick={increment} variant="outline">
+      <Button className={"w-18"} onClick={increment} variant="outline">
         +1
       </Button>
-      <Button onClick={decrement} variant="outline">
+      <Button className={"w-18"} onClick={decrement} variant="outline">
         -1
       </Button>
-      <Button onClick={reset} variant="outline">
+      <Button className={"w-18"} onClick={reset} variant="outline">
         Reset
       </Button>
     </div>
