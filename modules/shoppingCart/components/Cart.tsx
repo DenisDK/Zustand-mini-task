@@ -1,12 +1,10 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { useCartStore } from "../store/cart.store";
+import CartItem from "./CartItem";
 
 // Icons
 import { FaDollarSign } from "react-icons/fa6";
-import { FaPlus } from "react-icons/fa6";
-import { FaMinus } from "react-icons/fa6";
 
 const Cart = () => {
   const cartItems = useCartStore((state) => state.cartItems);
@@ -21,50 +19,14 @@ const Cart = () => {
     0,
   );
 
-  const removeFromCart = useCartStore((state) => state.removeFromCart);
-
-  const increaseQuantity = useCartStore((state) => state.increaseQuantity);
-  const decreaseQuantity = useCartStore((state) => state.decreaseQuantity);
-
   return (
     <div className="mt-5">
       <h2 className="font-bold">Cart:</h2>
 
       {cartItems.map((item) => (
-        <div key={item.id} className="mt-2">
-          <p>Name: {item.name}</p>
-          <p className="flex items-center gap-3">
-            Quantity:
-            <Button
-              onClick={() => decreaseQuantity(item.id)}
-              variant="outline"
-              className={""}
-            >
-              <FaMinus />
-            </Button>
-            {item.quantity}
-            <Button
-              onClick={() => increaseQuantity(item.id)}
-              variant="outline"
-              className={""}
-            >
-              <FaPlus />
-            </Button>
-          </p>
-          <p>Price: {item.price}</p>
-          <p className="flex items-center">
-            Price for ({item.name}): {item.price * item.quantity}{" "}
-            <FaDollarSign />
-          </p>
-          <Button
-            onClick={() => removeFromCart(item.id)}
-            variant="outline"
-            className={"mt-1"}
-          >
-            Remove
-          </Button>
-        </div>
+        <CartItem key={item.id} item={item} />
       ))}
+
       <div className="flex items-center mt-5 font-bold">
         Total quantity: {totalQuantity}
       </div>
