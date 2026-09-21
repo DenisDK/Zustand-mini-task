@@ -29,4 +29,22 @@ export const useCartStore = create<CartStore>((set) => ({
     set((state) => ({
       cartItems: state.cartItems.filter((item) => item.id !== productId),
     })),
+
+  increaseQuantity: (productId) =>
+    set((state) => ({
+      cartItems: state.cartItems.map((item) =>
+        item.id === productId ? { ...item, quantity: item.quantity + 1 } : item,
+      ),
+    })),
+
+  decreaseQuantity: (productId) =>
+    set((state) => ({
+      cartItems: state.cartItems
+        .map((item) =>
+          item.id === productId
+            ? { ...item, quantity: item.quantity - 1 }
+            : item,
+        )
+        .filter((item) => item.quantity > 0),
+    })),
 }));

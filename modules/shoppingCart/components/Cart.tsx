@@ -5,6 +5,8 @@ import { useCartStore } from "../store/cart.store";
 
 // Icons
 import { FaDollarSign } from "react-icons/fa6";
+import { FaPlus } from "react-icons/fa6";
+import { FaMinus } from "react-icons/fa6";
 
 const Cart = () => {
   const cartItems = useCartStore((state) => state.cartItems);
@@ -16,6 +18,9 @@ const Cart = () => {
 
   const removeFromCart = useCartStore((state) => state.removeFromCart);
 
+  const increaseQuantity = useCartStore((state) => state.increaseQuantity);
+  const decreaseQuantity = useCartStore((state) => state.decreaseQuantity);
+
   return (
     <div className="mt-5">
       <h2 className="font-bold">Cart:</h2>
@@ -23,7 +28,24 @@ const Cart = () => {
       {cartItems.map((item) => (
         <div key={item.id} className="mt-2">
           <p>Name: {item.name}</p>
-          <p>Quantity: {item.quantity}</p>
+          <p className="flex items-center gap-3">
+            Quantity:
+            <Button
+              onClick={() => decreaseQuantity(item.id)}
+              variant="outline"
+              className={""}
+            >
+              <FaMinus />
+            </Button>
+            {item.quantity}
+            <Button
+              onClick={() => increaseQuantity(item.id)}
+              variant="outline"
+              className={""}
+            >
+              <FaPlus />
+            </Button>
+          </p>
           <p>Price: {item.price}</p>
           <p className="flex items-center">
             Price for ({item.name}): {item.price * item.quantity}{" "}
