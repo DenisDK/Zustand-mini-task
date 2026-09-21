@@ -24,6 +24,7 @@ const ProductList = () => {
             alt={product.name}
             width={1000}
             height={1000}
+            loading="eager"
           />
           <div className="p-2">
             <h3 className="font-bold">{product.name}</h3>
