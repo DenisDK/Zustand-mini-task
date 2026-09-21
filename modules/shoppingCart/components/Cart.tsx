@@ -16,6 +16,11 @@ const Cart = () => {
     0,
   );
 
+  const totalQuantity = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0,
+  );
+
   const removeFromCart = useCartStore((state) => state.removeFromCart);
 
   const increaseQuantity = useCartStore((state) => state.increaseQuantity);
@@ -61,6 +66,9 @@ const Cart = () => {
         </div>
       ))}
       <div className="flex items-center mt-5 font-bold">
+        Total quantity: {totalQuantity}
+      </div>
+      <div className="flex items-center mt-1 font-bold">
         Total cart price: {totalPrice} <FaDollarSign />
       </div>
     </div>
