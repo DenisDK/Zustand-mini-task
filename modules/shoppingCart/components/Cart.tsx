@@ -23,16 +23,23 @@ const Cart = () => {
     <div className="mt-5">
       <h2 className="font-bold">Cart:</h2>
 
-      {cartItems.map((item) => (
-        <CartItem key={item.id} item={item} />
-      ))}
+      {cartItems.length === 0 ? (
+        <p>Your cart is empty</p>
+      ) : (
+        <>
+          {cartItems.map((item) => (
+            <CartItem key={item.id} item={item} />
+          ))}
 
-      <div className="flex items-center mt-5 font-bold">
-        Total quantity: {totalQuantity}
-      </div>
-      <div className="flex items-center mt-1 font-bold">
-        Total cart price: {totalPrice} <FaDollarSign />
-      </div>
+          <div className="flex items-center mt-5 font-bold">
+            Total quantity: {totalQuantity}
+          </div>
+
+          <div className="flex items-center mt-1 font-bold">
+            Total cart price: {totalPrice} <FaDollarSign />
+          </div>
+        </>
+      )}
     </div>
   );
 };
