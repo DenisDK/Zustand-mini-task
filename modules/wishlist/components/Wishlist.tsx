@@ -1,5 +1,11 @@
+import ProductList from "./ProductList";
+
 const Wishlist = () => {
-  return <div>Wishlist</div>;
+  return (
+    <div>
+      <ProductList />
+    </div>
+  );
 };
 
 export default Wishlist;
