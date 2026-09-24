@@ -22,4 +22,6 @@ export const useWishlistStore = create<WishlistStore>((set) => ({
         favorites: [...state.favorites, product],
       };
     }),
+
+  clearFavorites: () => set({ favorites: [] }),
 }));

@@ -11,4 +11,5 @@ export type WishlistStore = {
   favorites: Product[];
 
   toggleFavorite: (product: Product) => void;
+  clearFavorites: () => void;
 };

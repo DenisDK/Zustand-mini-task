@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { useWishlistStore } from "../store/wishlist.store";
 
 // Icons
@@ -7,6 +8,8 @@ import { FaDollarSign } from "react-icons/fa6";
 
 const FavoritesList = () => {
   const favorites = useWishlistStore((state) => state.favorites);
+
+  const clearFavorites = useWishlistStore((state) => state.clearFavorites);
 
   const favoriteCount = favorites.length;
 
@@ -26,6 +29,9 @@ const FavoritesList = () => {
           </div>
         ))
       )}
+      <Button onClick={clearFavorites} variant="outline" className={"mt-3"}>
+        Clear wishlist
+      </Button>
     </div>
   );
 };
