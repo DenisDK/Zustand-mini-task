@@ -8,9 +8,11 @@ import { FaDollarSign } from "react-icons/fa6";
 const FavoritesList = () => {
   const favorites = useWishlistStore((state) => state.favorites);
 
+  const favoriteCount = favorites.length;
+
   return (
     <div className="mt-5 ">
-      <h2 className="font-bold mb-2">Favorites:</h2>
+      <h2 className="font-bold mb-2">Favorites count: {favoriteCount}</h2>
 
       {favorites.length === 0 ? (
         <p>Your wishlist is empty {":("}</p>
