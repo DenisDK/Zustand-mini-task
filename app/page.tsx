@@ -1,6 +1,8 @@
 // import { Counter } from "@/modules/counter";
 // import { ShoppingCart } from "@/modules/shoppingCart";
-import { Wishlist } from "@/modules/wishlist";
+// import { Wishlist } from "@/modules/wishlist";
+
+import { ToDo } from "@/modules/to-do";
 
 export default function Home() {
   return (
@@ -8,7 +10,8 @@ export default function Home() {
       <main className="flex flex-1 w-full flex-col items-center justify-center py-32 px-16 bg-white dark:bg-black">
         {/* <Counter /> */}
         {/* <ShoppingCart /> */}
-        <Wishlist />
+        {/* <Wishlist /> */}
+        <ToDo />
       </main>
     </div>
   );
