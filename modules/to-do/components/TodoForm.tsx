@@ -13,6 +13,10 @@ const TodoForm = () => {
   const [description, setDescription] = useState("");
 
   const handleAddTodo = () => {
+    if (!title.trim()) {
+      return;
+    }
+
     addTodo({
       id: Date.now(),
       title: title,
