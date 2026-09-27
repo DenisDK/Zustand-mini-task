@@ -9,4 +9,10 @@ export const useTodoStore = create<TodoStore>((set) => ({
       todos: [...state.todos, todo],
     }));
   },
+
+  removeTodo: (todoId: number) => {
+    set((state) => ({
+      todos: state.todos.filter((todo) => todo.id !== todoId),
+    }));
+  },
 }));

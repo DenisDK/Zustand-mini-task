@@ -9,4 +9,5 @@ export type TodoStore = {
   todos: Todo[];
 
   addTodo: (todo: Todo) => void;
+  removeTodo: (todoId: number) => void;
 };

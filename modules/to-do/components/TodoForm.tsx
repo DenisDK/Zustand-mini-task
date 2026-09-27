@@ -29,7 +29,7 @@ const TodoForm = () => {
   };
 
   return (
-    <div>
+    <div className="">
       <div className="flex flex-col gap-1.5">
         <Input
           value={title}
@@ -43,7 +43,7 @@ const TodoForm = () => {
           placeholder="Todo description"
         />
       </div>
-      <Button variant="outline" onClick={handleAddTodo} className="mt-3">
+      <Button variant="outline" onClick={handleAddTodo} className="mt-3 w-full">
         ToDo
       </Button>
     </div>
