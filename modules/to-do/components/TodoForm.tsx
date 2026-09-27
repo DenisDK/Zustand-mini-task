@@ -23,6 +23,9 @@ const TodoForm = () => {
       description: description,
       completed: false,
     });
+
+    setTitle("");
+    setDescription("");
   };
 
   return (

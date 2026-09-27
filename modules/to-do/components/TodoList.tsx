@@ -9,8 +9,8 @@ const TodoList = () => {
     <div>
       {todos.map((todo) => (
         <div key={todo.id}>
-          <h3>{todo.title}</h3>
-          <p>{todo.description}</p>
+          <h3>Title: {todo.title}</h3>
+          <p>Description: {todo.description}</p>
         </div>
       ))}
     </div>
