@@ -11,4 +11,5 @@ export type TodoStore = {
   addTodo: (todo: Todo) => void;
   removeTodo: (todoId: number) => void;
   toggleTodo: (todoId: number) => void;
+  updateTodo: (todoId: number, updates: Partial<Todo>) => void;
 };

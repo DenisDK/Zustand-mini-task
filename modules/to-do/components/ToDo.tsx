@@ -4,7 +4,7 @@ import TodoList from "./TodoList";
 const ToDo = () => {
   return (
     <div>
-      <div className="">
+      <div className="w-100">
         <TodoForm />
         <TodoList />
       </div>

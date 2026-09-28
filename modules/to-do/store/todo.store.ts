@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { TodoStore } from "../types/todo.types";
+import { Todo, TodoStore } from "../types/todo.types";
 
 export const useTodoStore = create<TodoStore>((set) => ({
   todos: [],
@@ -20,6 +20,14 @@ export const useTodoStore = create<TodoStore>((set) => ({
     set((state) => ({
       todos: state.todos.map((todo) =>
         todo.id === todoId ? { ...todo, completed: !todo.completed } : todo,
+      ),
+    }));
+  },
+
+  updateTodo: (todoId: number, updates: Partial<Todo>) => {
+    set((state) => ({
+      todos: state.todos.map((todo) =>
+        todo.id === todoId ? { ...todo, ...updates } : todo,
       ),
     }));
   },
