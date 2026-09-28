@@ -79,7 +79,14 @@ const TodoList = () => {
 
           <Button
             variant="outline"
-            onClick={() => removeTodo(todo.id)}
+            onClick={() => {
+              if (todo.id === editingTodoId) {
+                setEditingTodoId(null);
+                return;
+              }
+
+              removeTodo(todo.id);
+            }}
             className="hover:text-red-500 transition-300"
           >
             <IoClose />
