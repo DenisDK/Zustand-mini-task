@@ -46,7 +46,9 @@ const TodoList = () => {
             key={filterOption}
             variant="outline"
             onClick={() => setFilter(filterOption)}
-            className={"w-full"}
+            className={`w-full ${
+              filter === filterOption ? "!bg-white/10" : ""
+            }`}
           >
             {filterOption}
           </Button>
