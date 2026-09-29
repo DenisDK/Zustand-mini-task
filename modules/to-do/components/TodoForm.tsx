@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 
 const TodoForm = () => {
   const addTodo = useTodoStore((state) => state.addTodo);
-  const todos = useTodoStore((state) => state.todos.length);
+  const totalTodos = useTodoStore((state) => state.todos.length);
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -35,7 +35,7 @@ const TodoForm = () => {
         <div className="text-center">
           <h2 className="text-2xl font-bold">Todo List</h2>
           <h3 className="">
-            Total: {todos} Todo{"(s)"}
+            Total: {totalTodos} Todo{"(s)"}
           </h3>
         </div>
         <Input
