@@ -13,3 +13,5 @@ export type TodoStore = {
   toggleTodo: (todoId: number) => void;
   updateTodo: (todoId: number, updates: Partial<Todo>) => void;
 };
+
+export type Filter = "all" | "active" | "completed";

@@ -6,6 +6,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
+import { Filter } from "../types/todo.types";
 
 // Icons
 import { IoClose } from "react-icons/io5";
@@ -22,9 +23,36 @@ const TodoList = () => {
   const [editTitle, setEditTitle] = useState("");
   const [editDescription, setEditDescription] = useState("");
 
+  const [filter, setFilter] = useState<Filter>("all");
+  const filters: Filter[] = ["all", "active", "completed"];
+
+  const filteredTodos = todos.filter((todo) => {
+    if (filter === "active") {
+      return !todo.completed;
+    }
+
+    if (filter === "completed") {
+      return todo.completed;
+    }
+
+    return true;
+  });
+
   return (
     <div>
-      {todos.map((todo) => (
+      <div className="grid grid-cols-3 gap-2 mt-3">
+        {filters.map((filterOption) => (
+          <Button
+            key={filterOption}
+            variant="outline"
+            onClick={() => setFilter(filterOption)}
+            className={"w-full"}
+          >
+            {filterOption}
+          </Button>
+        ))}
+      </div>
+      {filteredTodos.map((todo) => (
         <div
           key={todo.id}
           className="bg-white/10 p-2 rounded-md mt-3 flex items-center justify-between gap-2"
