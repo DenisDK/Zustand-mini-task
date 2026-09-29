@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 
 const TodoForm = () => {
   const addTodo = useTodoStore((state) => state.addTodo);
+  const todos = useTodoStore((state) => state.todos.length);
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -31,6 +32,12 @@ const TodoForm = () => {
   return (
     <div className="">
       <div className="flex flex-col gap-1.5">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold">Todo List</h2>
+          <h3 className="">
+            Total: {todos} Todo{"(s)"}
+          </h3>
+        </div>
         <Input
           value={title}
           onChange={(event) => setTitle(event.target.value)}
@@ -44,7 +51,7 @@ const TodoForm = () => {
         />
       </div>
       <Button variant="outline" onClick={handleAddTodo} className="mt-3 w-full">
-        ToDo
+        Add ToDo
       </Button>
     </div>
   );
