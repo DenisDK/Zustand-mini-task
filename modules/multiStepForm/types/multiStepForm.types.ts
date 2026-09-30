@@ -10,7 +10,7 @@ export type MultiStepFormStore = {
   currentStep: number;
 
   updateFormData: (data: Partial<FormData>) => void;
-  //   nextStep: () => void;
-  //   previousStep: () => void;
+  nextStep: () => void;
+  previousStep: () => void;
   //   resetForm: () => void;
 };

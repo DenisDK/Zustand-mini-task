@@ -19,4 +19,16 @@ export const useMultiStepFormStore = create<MultiStepFormStore>((set) => ({
       },
     }));
   },
+
+  nextStep: () => {
+    set((state) => ({
+      currentStep: Math.min(state.currentStep + 1, 3),
+    }));
+  },
+
+  previousStep: () => {
+    set((state) => ({
+      currentStep: Math.max(state.currentStep - 1, 1),
+    }));
+  },
 }));

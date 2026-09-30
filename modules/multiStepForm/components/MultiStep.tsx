@@ -1,10 +1,9 @@
-import React from "react";
-import StepOne from "./StepOne";
+import MultiStepForm from "./MultiStepForm";
 
 const MultiStep = () => {
   return (
-    <div>
-      <StepOne />
+    <div className="">
+      <MultiStepForm />
     </div>
   );
 };
