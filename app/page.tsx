@@ -1,8 +1,9 @@
 // import { Counter } from "@/modules/counter";
 // import { ShoppingCart } from "@/modules/shoppingCart";
 // import { Wishlist } from "@/modules/wishlist";
+// import { ToDo } from "@/modules/to-do";
 
-import { ToDo } from "@/modules/to-do";
+import { MultiStep } from "@/modules/multiStepForm";
 
 export default function Home() {
   return (
@@ -11,7 +12,8 @@ export default function Home() {
         {/* <Counter /> */}
         {/* <ShoppingCart /> */}
         {/* <Wishlist /> */}
-        <ToDo />
+        {/* <ToDo /> */}
+        <MultiStep />
       </main>
     </div>
   );
