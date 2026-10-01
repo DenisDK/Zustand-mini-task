@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import type { MultiStepFormStore } from "../types/multiStepForm.types";
 
-export const useMultiStepFormStore = create<MultiStepFormStore>((set) => ({
+export const useMultiStepFormStore = create<MultiStepFormStore>((set, get) => ({
   formData: {
     name: "",
     email: "",
@@ -30,5 +30,10 @@ export const useMultiStepFormStore = create<MultiStepFormStore>((set) => ({
     set((state) => ({
       currentStep: Math.max(state.currentStep - 1, 1),
     }));
+  },
+
+  submitForm: () => {
+    const { formData } = get();
+    console.log("Form submitted:", formData);
   },
 }));

@@ -10,6 +10,7 @@ const MultiStepForm = () => {
   const currentStep = useMultiStepFormStore((state) => state.currentStep);
   const nextStep = useMultiStepFormStore((state) => state.nextStep);
   const previousStep = useMultiStepFormStore((state) => state.previousStep);
+  const submitForm = useMultiStepFormStore((state) => state.submitForm);
 
   return (
     <div className="flex flex-col gap-2">
@@ -18,17 +19,32 @@ const MultiStepForm = () => {
       {currentStep === 2 && <StepTwo />}
       {currentStep === 3 && <StepThree />}
 
-      <div className="grid grid-cols-2 gap-2">
-        <Button
-          onClick={previousStep}
-          variant="outline"
-          className="mt-2 w-full"
-        >
-          Previous
-        </Button>
-        <Button onClick={nextStep} variant="outline" className="mt-2 w-full">
-          Next
-        </Button>
+      <div className="flex gap-2">
+        {currentStep > 1 && (
+          <Button
+            onClick={previousStep}
+            variant="outline"
+            className="mt-1 flex-1"
+          >
+            Previous
+          </Button>
+        )}
+
+        {currentStep < 3 && (
+          <Button onClick={nextStep} variant="outline" className="mt-1 flex-1">
+            Next
+          </Button>
+        )}
+
+        {currentStep === 3 && (
+          <Button
+            onClick={submitForm}
+            variant="outline"
+            className="mt-1 flex-1"
+          >
+            Submit
+          </Button>
+        )}
       </div>
     </div>
   );

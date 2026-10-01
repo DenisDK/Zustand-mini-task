@@ -12,5 +12,6 @@ export type MultiStepFormStore = {
   updateFormData: (data: Partial<FormData>) => void;
   nextStep: () => void;
   previousStep: () => void;
+  submitForm: () => void;
   //   resetForm: () => void;
 };
