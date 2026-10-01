@@ -11,6 +11,7 @@ const MultiStepForm = () => {
   const nextStep = useMultiStepFormStore((state) => state.nextStep);
   const previousStep = useMultiStepFormStore((state) => state.previousStep);
   const submitForm = useMultiStepFormStore((state) => state.submitForm);
+  const resetForm = useMultiStepFormStore((state) => state.resetForm);
 
   return (
     <div className="flex flex-col gap-2">
@@ -38,7 +39,10 @@ const MultiStepForm = () => {
 
         {currentStep === 3 && (
           <Button
-            onClick={submitForm}
+            onClick={() => {
+              submitForm();
+              resetForm();
+            }}
             variant="outline"
             className="mt-1 flex-1"
           >

@@ -13,5 +13,5 @@ export type MultiStepFormStore = {
   nextStep: () => void;
   previousStep: () => void;
   submitForm: () => void;
-  //   resetForm: () => void;
+  resetForm: () => void;
 };

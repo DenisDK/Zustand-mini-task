@@ -36,4 +36,16 @@ export const useMultiStepFormStore = create<MultiStepFormStore>((set, get) => ({
     const { formData } = get();
     console.log("Form submitted:", formData);
   },
+
+  resetForm: () => {
+    set({
+      formData: {
+        name: "",
+        email: "",
+        age: "",
+        occupation: "",
+      },
+      currentStep: 1,
+    });
+  },
 }));
