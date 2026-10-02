@@ -5,7 +5,7 @@ import { useMultiStepFormStore } from "../store/multiStepForm.store";
 import StepOne from "./StepOne";
 import StepThree from "./StepThree";
 import StepTwo from "./StepTwo";
-import { multiStepFormSchema } from "../schemas/multiStepForm.schema";
+import { stepOneSchema, stepTwoSchema } from "../schemas/multiStepForm.schema";
 import { useState } from "react";
 
 const MultiStepForm = () => {
@@ -21,7 +21,7 @@ const MultiStepForm = () => {
   return (
     <div className="flex flex-col gap-2">
       {/* <p className="text-xl font-bold px-2">Current step: {currentStep}</p> */}
-      {currentStep === 1 && <StepOne errors={errors} />}
+      {currentStep === 1 && <StepOne errors={errors} setErrors={setErrors} />}
       {currentStep === 2 && <StepTwo />}
       {currentStep === 3 && <StepThree />}
 
@@ -39,7 +39,8 @@ const MultiStepForm = () => {
         {currentStep < 3 && (
           <Button
             onClick={() => {
-              const result = multiStepFormSchema.safeParse(formData);
+              const schema = currentStep === 1 ? stepOneSchema : stepTwoSchema;
+              const result = schema.safeParse(formData);
 
               if (result.success) {
                 setErrors({});

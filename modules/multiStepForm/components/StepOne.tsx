@@ -3,7 +3,13 @@
 import { Input } from "@/components/ui/input";
 import { useMultiStepFormStore } from "../store/multiStepForm.store";
 
-const StepOne = ({ errors }: { errors: Record<string, string> }) => {
+const StepOne = ({
+  errors,
+  setErrors,
+}: {
+  errors: Record<string, string>;
+  setErrors: React.Dispatch<React.SetStateAction<Record<string, string>>>;
+}) => {
   const formData = useMultiStepFormStore((state) => state.formData);
   const updateFormData = useMultiStepFormStore((state) => state.updateFormData);
 
@@ -13,7 +19,14 @@ const StepOne = ({ errors }: { errors: Record<string, string> }) => {
       <div className="">
         <Input
           value={formData.name}
-          onChange={(event) => updateFormData({ name: event.target.value })}
+          onChange={(event) => {
+            updateFormData({ name: event.target.value });
+
+            setErrors((prev) => ({
+              ...prev,
+              name: "",
+            }));
+          }}
           placeholder="Name"
         />
         {errors.name && (
@@ -24,7 +37,14 @@ const StepOne = ({ errors }: { errors: Record<string, string> }) => {
       <div className="">
         <Input
           value={formData.email}
-          onChange={(event) => updateFormData({ email: event.target.value })}
+          onChange={(event) => {
+            updateFormData({ email: event.target.value });
+
+            setErrors((prev) => ({
+              ...prev,
+              email: "",
+            }));
+          }}
           placeholder="Email"
           type="email"
         />

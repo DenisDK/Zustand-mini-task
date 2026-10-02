@@ -13,3 +13,13 @@ export const multiStepFormSchema = z.object({
     ),
   occupation: z.string().min(3, "Occupation is required"),
 });
+
+export const stepOneSchema = multiStepFormSchema.pick({
+  name: true,
+  email: true,
+});
+
+export const stepTwoSchema = multiStepFormSchema.pick({
+  age: true,
+  occupation: true,
+});
