@@ -5,6 +5,8 @@ import { useMultiStepFormStore } from "../store/multiStepForm.store";
 import StepOne from "./StepOne";
 import StepThree from "./StepThree";
 import StepTwo from "./StepTwo";
+import { multiStepFormSchema } from "../schemas/multiStepForm.schema";
+import { useState } from "react";
 
 const MultiStepForm = () => {
   const currentStep = useMultiStepFormStore((state) => state.currentStep);
@@ -12,11 +14,14 @@ const MultiStepForm = () => {
   const previousStep = useMultiStepFormStore((state) => state.previousStep);
   const submitForm = useMultiStepFormStore((state) => state.submitForm);
   const resetForm = useMultiStepFormStore((state) => state.resetForm);
+  const formData = useMultiStepFormStore((state) => state.formData);
+
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   return (
     <div className="flex flex-col gap-2">
       {/* <p className="text-xl font-bold px-2">Current step: {currentStep}</p> */}
-      {currentStep === 1 && <StepOne />}
+      {currentStep === 1 && <StepOne errors={errors} />}
       {currentStep === 2 && <StepTwo />}
       {currentStep === 3 && <StepThree />}
 
@@ -32,7 +37,31 @@ const MultiStepForm = () => {
         )}
 
         {currentStep < 3 && (
-          <Button onClick={nextStep} variant="outline" className="mt-1 flex-1">
+          <Button
+            onClick={() => {
+              const result = multiStepFormSchema.safeParse(formData);
+
+              if (result.success) {
+                setErrors({});
+                nextStep();
+                return;
+              }
+
+              const newErrors: Record<string, string> = {};
+
+              result.error.issues.forEach((issue) => {
+                const field = issue.path[0];
+
+                if (typeof field === "string") {
+                  newErrors[field] = issue.message;
+                }
+              });
+
+              setErrors(newErrors);
+            }}
+            variant="outline"
+            className="mt-1 flex-1"
+          >
             Next
           </Button>
         )}
