@@ -8,8 +8,8 @@ export const multiStepFormSchema = z.object({
     .min(1, "Age is required")
     .regex(/^\d+$/, "Age must contain only numbers")
     .refine(
-      (age) => Number(age) >= 1 && Number(age) <= 100,
-      "Age must be between 1 and 100",
+      (age) => Number(age) >= 18 && Number(age) <= 100,
+      "Age must be between 18 and 100",
     ),
   occupation: z.string().min(3, "Occupation is required"),
 });
