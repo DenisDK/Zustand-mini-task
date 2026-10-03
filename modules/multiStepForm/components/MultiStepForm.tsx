@@ -7,6 +7,7 @@ import StepThree from "./StepThree";
 import StepTwo from "./StepTwo";
 import { stepOneSchema, stepTwoSchema } from "../schemas/multiStepForm.schema";
 import { useState } from "react";
+import StepIndicator from "./StepIndicator";
 
 const MultiStepForm = () => {
   const currentStep = useMultiStepFormStore((state) => state.currentStep);
@@ -21,6 +22,7 @@ const MultiStepForm = () => {
   return (
     <div className="flex flex-col gap-2">
       {/* <p className="text-xl font-bold px-2">Current step: {currentStep}</p> */}
+      <StepIndicator />
       {currentStep === 1 && <StepOne errors={errors} setErrors={setErrors} />}
       {currentStep === 2 && <StepTwo errors={errors} setErrors={setErrors} />}
       {currentStep === 3 && <StepThree />}
