@@ -7,14 +7,17 @@ const StepIndicator = () => {
   const currentStep = useMultiStepFormStore((state) => state.currentStep);
 
   return (
-    <div>
+    <div className="flex gap-4 mb-2">
       {steps.map((step, index) => {
         const stepNumber = index + 1;
 
         const isCompleted = stepNumber < currentStep;
         const isActive = stepNumber === currentStep;
         return (
-          <div key={step}>
+          <div
+            key={step}
+            className={`flex items-center gap-2 ${isActive ? "font-bold" : ""}`}
+          >
             <div>{isCompleted ? "✓" : isActive ? "●" : "○"}</div>
             <span>{step}</span>
           </div>
