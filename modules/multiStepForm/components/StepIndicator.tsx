@@ -8,31 +8,45 @@ import { FaRegCircle } from "react-icons/fa";
 import { FaRegDotCircle } from "react-icons/fa";
 
 const StepIndicator = () => {
-  const steps = ["Personal", "Details", "Review"];
+  const steps = ["Step 1", "Step 2", "Step 3"];
   const currentStep = useMultiStepFormStore((state) => state.currentStep);
 
   return (
-    <div className="flex gap-4 mb-2">
+    <div className="flex w-full items-start">
       {steps.map((step, index) => {
         const stepNumber = index + 1;
 
         const isCompleted = stepNumber < currentStep;
         const isActive = stepNumber === currentStep;
+
         return (
           <div
             key={step}
-            className={`flex flex-col items-center gap-2 ${isActive ? "font-bold" : ""}`}
+            className={`flex items-start ${
+              index < steps.length - 1 ? "flex-1" : ""
+            }`}
           >
-            <div>
+            {/* Step */}
+            <div className="flex shrink-0 flex-col items-center">
               {isCompleted ? (
-                <FaRegCheckCircle />
+                <FaRegCheckCircle className="text-[20px] animate-in fade-in zoom-in duration-200 text-green-400 " />
               ) : isActive ? (
-                <FaRegDotCircle />
+                <FaRegDotCircle className="text-[20px] animate-in fade-in zoom-in duration-200 text-blue-400 " />
               ) : (
-                <FaRegCircle />
+                <FaRegCircle className="text-[20px] animate-in fade-in zoom-in duration-200 text-gray-400 " />
               )}
+
+              <span className={isActive ? "font-bold" : ""}>{step}</span>
             </div>
-            <span>{step}</span>
+
+            {/* Line */}
+            {index < steps.length - 1 && (
+              <div
+                className={`mt-2 -mx-2.5 h-0.5 flex-1 ${
+                  isCompleted ? "bg-green-400" : "bg-white/20"
+                }`}
+              />
+            )}
           </div>
         );
       })}
