@@ -6,7 +6,7 @@ const StepThree = () => {
   const formData = useMultiStepFormStore((state) => state.formData);
 
   return (
-    <div className="flex flex-col gap-3 bg-white/5 rounded-md p-3">
+    <div className="flex flex-col gap-3 ">
       <h3 className="text-xl font-bold">Step Three</h3>
       <div className="space-y-2">
         <p>Name: {formData.name}</p>

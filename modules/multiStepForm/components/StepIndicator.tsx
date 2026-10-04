@@ -36,13 +36,19 @@ const StepIndicator = () => {
                 <FaRegCircle className="text-[20px] animate-in fade-in zoom-in duration-200 text-gray-400 " />
               )}
 
-              <span className={isActive ? "font-bold" : ""}>{step}</span>
+              <span
+                className={
+                  isActive ? "font-bold text-[14px] mt-2" : "text-[14px] mt-2"
+                }
+              >
+                {step}
+              </span>
             </div>
 
             {/* Line */}
             {index < steps.length - 1 && (
               <div
-                className={`mt-2 -mx-2.5 h-0.5 flex-1 ${
+                className={`mt-2 -mx-2 h-0.5 flex-1 ${
                   isCompleted ? "bg-green-400" : "bg-white/20"
                 }`}
               />

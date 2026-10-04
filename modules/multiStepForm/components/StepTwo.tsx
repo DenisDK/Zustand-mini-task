@@ -14,7 +14,7 @@ const StepTwo = ({
   const updateFormData = useMultiStepFormStore((state) => state.updateFormData);
 
   return (
-    <div className="flex flex-col gap-3 bg-white/5 rounded-md p-3">
+    <div className="flex flex-col gap-3 ">
       <h3 className="text-xl font-bold">Step Two</h3>
       <div className="">
         <Input
