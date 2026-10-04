@@ -2,6 +2,11 @@
 
 import { useMultiStepFormStore } from "../store/multiStepForm.store";
 
+// Icons
+import { FaRegCheckCircle } from "react-icons/fa";
+import { FaRegCircle } from "react-icons/fa";
+import { FaRegDotCircle } from "react-icons/fa";
+
 const StepIndicator = () => {
   const steps = ["Personal", "Details", "Review"];
   const currentStep = useMultiStepFormStore((state) => state.currentStep);
@@ -16,9 +21,17 @@ const StepIndicator = () => {
         return (
           <div
             key={step}
-            className={`flex items-center gap-2 ${isActive ? "font-bold" : ""}`}
+            className={`flex flex-col items-center gap-2 ${isActive ? "font-bold" : ""}`}
           >
-            <div>{isCompleted ? "✓" : isActive ? "●" : "○"}</div>
+            <div>
+              {isCompleted ? (
+                <FaRegCheckCircle />
+              ) : isActive ? (
+                <FaRegDotCircle />
+              ) : (
+                <FaRegCircle />
+              )}
+            </div>
             <span>{step}</span>
           </div>
         );
