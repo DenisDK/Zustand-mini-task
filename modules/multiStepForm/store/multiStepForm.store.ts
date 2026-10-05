@@ -2,11 +2,18 @@ import { create } from "zustand";
 import type { MultiStepFormStore } from "../types/multiStepForm.types";
 
 export const useMultiStepFormStore = create<MultiStepFormStore>((set, get) => ({
+  // formData: {
+  //   name: "",
+  //   email: "",
+  //   age: "",
+  //   occupation: "",
+  // },
+
   formData: {
     name: "",
     email: "",
-    age: "",
-    occupation: "",
+    role: "",
+    message: "",
   },
 
   currentStep: 1,
@@ -22,7 +29,7 @@ export const useMultiStepFormStore = create<MultiStepFormStore>((set, get) => ({
 
   nextStep: () => {
     set((state) => ({
-      currentStep: Math.min(state.currentStep + 1, 3),
+      currentStep: Math.min(state.currentStep + 1, 4),
     }));
   },
 
@@ -39,11 +46,17 @@ export const useMultiStepFormStore = create<MultiStepFormStore>((set, get) => ({
 
   resetForm: () => {
     set({
+      // formData: {
+      //   name: "",
+      //   email: "",
+      //   age: "",
+      //   occupation: "",
+      // },
       formData: {
         name: "",
         email: "",
-        age: "",
-        occupation: "",
+        role: "",
+        message: "",
       },
       currentStep: 1,
     });
