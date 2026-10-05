@@ -15,9 +15,18 @@ const StepOne = ({
 
   return (
     <div className="flex flex-col gap-3">
-      <h3 className="text-xl font-bold">Step One</h3>
+      <div>
+        <h2 className="text-xl font-bold">Introduction</h2>
+        <h3 className="text-2xl font-bold">What should we call you?</h3>
+      </div>
+
       <div className="">
+        <label htmlFor="name" className="text-sm text-white/50">
+          First name works great.
+        </label>
         <Input
+          id="name"
+          className="mt-1"
           value={formData.name}
           onChange={(event) => {
             updateFormData({ name: event.target.value });
@@ -34,7 +43,7 @@ const StepOne = ({
         )}
       </div>
 
-      <div className="">
+      {/* <div className="">
         <Input
           value={formData.email}
           onChange={(event) => {
@@ -52,7 +61,7 @@ const StepOne = ({
         {errors.email && (
           <p className=" mt-1 text-sm text-red-400">{errors.email}</p>
         )}
-      </div>
+      </div> */}
     </div>
   );
 };

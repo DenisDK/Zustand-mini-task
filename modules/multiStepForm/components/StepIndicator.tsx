@@ -9,7 +9,7 @@ import { FaRegCircle } from "react-icons/fa";
 import { FaRegDotCircle } from "react-icons/fa";
 
 const StepIndicator = () => {
-  const steps = ["Introduction", "Contact", "Details", "Finishing up"];
+  const steps = ["Step 1", "Step 2", "Step 3", "Step 4"];
   const currentStep = useMultiStepFormStore((state) => state.currentStep);
 
   return (
