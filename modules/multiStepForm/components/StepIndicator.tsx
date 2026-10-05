@@ -1,6 +1,7 @@
 "use client";
 
 import { useMultiStepFormStore } from "../store/multiStepForm.store";
+import { Progress } from "@/components/ui/progress";
 
 // Icons
 import { FaRegCheckCircle } from "react-icons/fa";
@@ -47,10 +48,9 @@ const StepIndicator = () => {
 
             {/* Line */}
             {index < steps.length - 1 && (
-              <div
-                className={`mt-2 -mx-2 h-0.5 flex-1 ${
-                  isCompleted ? "bg-green-400" : "bg-white/20"
-                }`}
+              <Progress
+                value={isCompleted ? 100 : 0}
+                className="mt-2 -mx-1 flex-1 **:data-[slot=progress-indicator]:bg-green-400 **:data-[slot=progress-indicator]:duration-300"
               />
             )}
           </div>
