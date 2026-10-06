@@ -56,20 +56,19 @@ const StepTwo = ({
   // );
 
   return (
-    <div className="flex flex-col gap-3 rounded-md bg-white/5 p-3">
-      <h3 className="text-xl font-bold">Contact</h3>
-
+    <div className="flex flex-col gap-3 rounded-md">
       <div>
-        <h2 className="text-2xl font-bold">{"What's"} your email address?</h2>
-
-        <label htmlFor="email" className="text-sm text-white/50">
-          {"We'll"} send your confirmation here.
-        </label>
+        <h2 className="text-xl font-bold">Contact</h2>
+        <h3 className="text-2xl font-bold">{"What's"} your email address?</h3>
       </div>
 
       <div>
+        <label htmlFor="email" className="text-sm text-white/50">
+          {"We'll"} send your confirmation here.
+        </label>
         <Input
           id="email"
+          className="mt-1"
           value={formData.email}
           onChange={(event) => {
             updateFormData({ email: event.target.value });
