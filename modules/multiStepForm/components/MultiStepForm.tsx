@@ -26,7 +26,9 @@ const MultiStepForm = () => {
       <div className="bg-white/5 rounded-md p-3">
         {currentStep === 1 && <StepOne errors={errors} setErrors={setErrors} />}
         {currentStep === 2 && <StepTwo errors={errors} setErrors={setErrors} />}
-        {currentStep === 3 && <StepThree />}
+        {currentStep === 3 && (
+          <StepThree errors={errors} setErrors={setErrors} />
+        )}
 
         <div className="flex gap-2">
           {currentStep > 1 && (
