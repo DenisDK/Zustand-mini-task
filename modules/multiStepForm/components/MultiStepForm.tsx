@@ -8,6 +8,7 @@ import StepTwo from "./StepTwo";
 import { stepOneSchema, stepTwoSchema } from "../schemas/multiStepForm.schema";
 import { useState } from "react";
 import StepIndicator from "./StepIndicator";
+import StepFour from "./StepFour";
 
 const MultiStepForm = () => {
   const currentStep = useMultiStepFormStore((state) => state.currentStep);
@@ -29,6 +30,9 @@ const MultiStepForm = () => {
         {currentStep === 3 && (
           <StepThree errors={errors} setErrors={setErrors} />
         )}
+        {currentStep === 4 && (
+          <StepFour errors={errors} setErrors={setErrors} />
+        )}
 
         <div className="flex gap-2">
           {currentStep > 1 && (
@@ -41,7 +45,7 @@ const MultiStepForm = () => {
             </Button>
           )}
 
-          {currentStep < 3 && (
+          {currentStep < 4 && (
             <Button
               onClick={() => {
                 const schema =
@@ -73,7 +77,7 @@ const MultiStepForm = () => {
             </Button>
           )}
 
-          {currentStep === 3 && (
+          {currentStep === 4 && (
             <Button
               onClick={() => {
                 submitForm();
