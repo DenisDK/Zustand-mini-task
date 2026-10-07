@@ -15,8 +15,8 @@ const StepFour = ({
 
   return (
     <div className="flex flex-col gap-3">
-      <div>
-        <h2 className="text-xl font-bold text-white/60">Finishing up</h2>
+      <div className="flex flex-col gap-1">
+        <h2 className="text-[14px] text-white/60">Finishing up</h2>
         <h3 className="text-2xl font-bold text-white/90">
           Anything {"you'd"} like to add?
         </h3>
