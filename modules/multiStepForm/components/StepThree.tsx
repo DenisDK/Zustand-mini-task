@@ -50,10 +50,11 @@ const StepThree = ({
 
   return (
     <div className="flex flex-col gap-3">
-      <h3 className="text-xl font-bold">Details</h3>
-
       <div>
-        <h2 className="text-2xl font-bold">What best describes you?</h2>
+        <h2 className="text-xl font-bold text-white/60">Details</h2>
+        <h3 className="text-2xl font-bold text-white/90">
+          What best describes you?
+        </h3>
       </div>
 
       <div className="grid grid-cols-2 gap-2">
