@@ -26,7 +26,7 @@ const MultiStepForm = () => {
       <StepIndicator />
       <div
         key={currentStep}
-        className="bg-white/5 rounded-md p-3 animate-in fade-in slide-in-from-right-2 duration-400"
+        className="bg-white/5 rounded-md border p-3 animate-in fade-in slide-in-from-right-2 duration-400"
       >
         {currentStep === 1 && <StepOne errors={errors} setErrors={setErrors} />}
         {currentStep === 2 && <StepTwo errors={errors} setErrors={setErrors} />}
