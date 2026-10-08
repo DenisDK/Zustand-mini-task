@@ -24,7 +24,10 @@ const MultiStepForm = () => {
     <div className="flex flex-col gap-2">
       {/* <p className="text-xl font-bold px-2">Current step: {currentStep}</p> */}
       <StepIndicator />
-      <div className="bg-white/5 rounded-md p-3">
+      <div
+        key={currentStep}
+        className="bg-white/5 rounded-md p-3 animate-in fade-in slide-in-from-right-2 duration-400"
+      >
         {currentStep === 1 && <StepOne errors={errors} setErrors={setErrors} />}
         {currentStep === 2 && <StepTwo errors={errors} setErrors={setErrors} />}
         {currentStep === 3 && (
