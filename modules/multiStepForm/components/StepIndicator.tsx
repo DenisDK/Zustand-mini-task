@@ -8,7 +8,11 @@ import { FaRegCheckCircle } from "react-icons/fa";
 import { FaRegCircle } from "react-icons/fa";
 import { FaRegDotCircle } from "react-icons/fa";
 
-const StepIndicator = () => {
+type StepIndicatorProps = {
+  isSubmitted?: boolean;
+};
+
+const StepIndicator = ({ isSubmitted = false }: StepIndicatorProps) => {
   const steps = ["Step 1", "Step 2", "Step 3", "Step 4"];
   const currentStep = useMultiStepFormStore((state) => state.currentStep);
 
@@ -17,9 +21,8 @@ const StepIndicator = () => {
       {steps.map((step, index) => {
         const stepNumber = index + 1;
 
-        const isCompleted = stepNumber < currentStep;
-        const isActive = stepNumber === currentStep;
-
+        const isCompleted = isSubmitted || stepNumber < currentStep;
+        const isActive = !isSubmitted && stepNumber === currentStep;
         return (
           <div
             key={step}

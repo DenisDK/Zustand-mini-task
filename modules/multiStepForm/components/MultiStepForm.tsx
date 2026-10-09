@@ -9,6 +9,7 @@ import { stepOneSchema, stepTwoSchema } from "../schemas/multiStepForm.schema";
 import { useState } from "react";
 import StepIndicator from "./StepIndicator";
 import StepFour from "./StepFour";
+import SubmitSuccess from "./SubmitSuccess";
 
 const MultiStepForm = () => {
   const currentStep = useMultiStepFormStore((state) => state.currentStep);
@@ -18,82 +19,108 @@ const MultiStepForm = () => {
   const resetForm = useMultiStepFormStore((state) => state.resetForm);
   const formData = useMultiStepFormStore((state) => state.formData);
 
+  // Local state
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleStartNewForm = () => {
+    resetForm();
+    setErrors({});
+    setIsSubmitted(false);
+  };
 
   return (
     <div className="flex flex-col gap-2">
       {/* <p className="text-xl font-bold px-2">Current step: {currentStep}</p> */}
-      <StepIndicator />
-      <div
-        key={currentStep}
-        className="bg-white/5 rounded-md border p-3 animate-in fade-in slide-in-from-right-2 duration-400"
-      >
-        {currentStep === 1 && <StepOne errors={errors} setErrors={setErrors} />}
-        {currentStep === 2 && <StepTwo errors={errors} setErrors={setErrors} />}
-        {currentStep === 3 && (
-          <StepThree errors={errors} setErrors={setErrors} />
-        )}
-        {currentStep === 4 && (
-          <StepFour errors={errors} setErrors={setErrors} />
-        )}
 
-        <div className="flex gap-2">
-          {currentStep > 1 && (
-            <Button
-              onClick={previousStep}
-              variant="outline"
-              className="mt-5 flex-1"
-            >
-              Previous
-            </Button>
-          )}
+      {isSubmitted ? (
+        <>
+          <StepIndicator isSubmitted={isSubmitted} />
+          <SubmitSuccess
+            formData={formData}
+            onStartNewForm={handleStartNewForm}
+          />
+        </>
+      ) : (
+        <>
+          <StepIndicator isSubmitted={isSubmitted} />
+          <div
+            key={currentStep}
+            className="bg-white/5 rounded-md border p-3 animate-in fade-in slide-in-from-right-2 duration-400"
+          >
+            {currentStep === 1 && (
+              <StepOne errors={errors} setErrors={setErrors} />
+            )}
+            {currentStep === 2 && (
+              <StepTwo errors={errors} setErrors={setErrors} />
+            )}
+            {currentStep === 3 && (
+              <StepThree errors={errors} setErrors={setErrors} />
+            )}
+            {currentStep === 4 && (
+              <StepFour errors={errors} setErrors={setErrors} />
+            )}
 
-          {currentStep < 4 && (
-            <Button
-              onClick={() => {
-                const schema =
-                  currentStep === 1 ? stepOneSchema : stepTwoSchema;
-                const result = schema.safeParse(formData);
+            <div className="flex gap-2">
+              {currentStep > 1 && (
+                <Button
+                  onClick={previousStep}
+                  variant="outline"
+                  className="mt-5 flex-1"
+                >
+                  Previous
+                </Button>
+              )}
 
-                if (result.success) {
-                  setErrors({});
-                  nextStep();
-                  return;
-                }
+              {currentStep < 4 && (
+                <Button
+                  onClick={() => {
+                    const schema =
+                      currentStep === 1 ? stepOneSchema : stepTwoSchema;
+                    const result = schema.safeParse(formData);
 
-                const newErrors: Record<string, string> = {};
+                    if (result.success) {
+                      setErrors({});
+                      nextStep();
+                      return;
+                    }
 
-                result.error.issues.forEach((issue) => {
-                  const field = issue.path[0];
+                    const newErrors: Record<string, string> = {};
 
-                  if (typeof field === "string") {
-                    newErrors[field] = issue.message;
-                  }
-                });
+                    result.error.issues.forEach((issue) => {
+                      const field = issue.path[0];
 
-                setErrors(newErrors);
-              }}
-              variant="outline"
-              className="mt-5 flex-1"
-            >
-              Next
-            </Button>
-          )}
+                      if (typeof field === "string") {
+                        newErrors[field] = issue.message;
+                      }
+                    });
 
-          {currentStep === 4 && (
-            <Button
-              onClick={() => {
-                submitForm();
-                resetForm();
-              }}
-              variant="outline"
-              className="mt-5 flex-1"
-            >
-              Submit
-            </Button>
-          )}
-        </div>
-      </div>
+                    setErrors(newErrors);
+                  }}
+                  variant="outline"
+                  className="mt-5 flex-1"
+                >
+                  Next
+                </Button>
+              )}
+
+              {currentStep === 4 && (
+                <Button
+                  onClick={() => {
+                    submitForm();
+                    // resetForm();
+                    setIsSubmitted(true);
+                  }}
+                  variant="outline"
+                  className="mt-5 flex-1"
+                >
+                  Submit
+                </Button>
+              )}
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };
