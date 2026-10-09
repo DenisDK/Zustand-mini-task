@@ -5,6 +5,7 @@ import StepThree from "./components/StepThree";
 import StepFour from "./components/StepFour";
 import MultiStepForm from "./components/MultiStepForm";
 import StepIndicator from "./components/StepIndicator";
+import SubmitSuccess from "./components/SubmitSuccess";
 
 export {
   MultiStep,
@@ -14,4 +15,5 @@ export {
   StepFour,
   MultiStepForm,
   StepIndicator,
+  SubmitSuccess,
 };
