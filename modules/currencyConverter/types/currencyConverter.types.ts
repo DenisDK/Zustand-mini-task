@@ -8,3 +8,13 @@ export type CurrencyRatesResponse = {
   baseCode: string;
   rates: Record<string, number>;
 };
+
+export type SupportedCurrenciesApiResponse = {
+  result: string;
+  supported_codes: [string, string][];
+};
+
+export type CurrencyOption = {
+  code: string;
+  name: string;
+};
