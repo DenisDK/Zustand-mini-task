@@ -4,11 +4,6 @@ export type ExchangeRateApiResponse = {
   conversion_rates: Record<string, number>;
 };
 
-export type CurrencyRatesResponse = {
-  baseCode: string;
-  rates: Record<string, number>;
-};
-
 export type SupportedCurrenciesApiResponse = {
   result: string;
   supported_codes: [string, string][];
@@ -17,4 +12,13 @@ export type SupportedCurrenciesApiResponse = {
 export type CurrencyOption = {
   code: string;
   name: string;
+};
+
+export type ExchangeRates = {
+  baseCode: string;
+  rates: Record<string, number>;
+};
+
+export type CurrencyRatesResponse = ExchangeRates & {
+  currencies: CurrencyOption[];
 };
