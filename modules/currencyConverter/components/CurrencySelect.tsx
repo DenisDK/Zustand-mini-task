@@ -5,9 +5,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { CurrencyOption } from "../types/currencyConverter.types";
 
 type CurrencySelectProps = {
-  currencies: string[];
+  currencies: CurrencyOption[];
   value: string;
   onValueChange: (value: string) => void;
 };
@@ -30,10 +31,10 @@ const CurrencySelect = ({
         <SelectValue placeholder="Select currency" />
       </SelectTrigger>
 
-      <SelectContent>
+      <SelectContent className="max-h-60" alignItemWithTrigger={false}>
         {currencies.map((currency) => (
-          <SelectItem key={currency} value={currency}>
-            {currency}
+          <SelectItem key={currency.code} value={currency.code}>
+            {currency.code} — {currency.name}
           </SelectItem>
         ))}
       </SelectContent>
