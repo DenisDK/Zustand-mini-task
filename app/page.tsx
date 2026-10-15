@@ -3,8 +3,9 @@
 // import { Wishlist } from "@/modules/wishlist";
 // import { ToDo } from "@/modules/to-do";
 // import { MultiStep } from "@/modules/multiStepForm";
+// import { CurrencyConverter } from "@/modules/currencyConverter";
 
-import { CurrencyConverter } from "@/modules/currencyConverter";
+import { Notes } from "@/modules/notes";
 
 export default function Home() {
   return (
@@ -15,7 +16,8 @@ export default function Home() {
         {/* <Wishlist /> */}
         {/* <ToDo /> */}
         {/* <MultiStep /> */}
-        <CurrencyConverter />
+        {/* <CurrencyConverter /> */}
+        <Notes />
       </main>
     </div>
   );
