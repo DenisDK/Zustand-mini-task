@@ -1,6 +1,7 @@
 "use client";
 
 import { useNotesStore } from "../store/notes.store";
+import CreateNoteButton from "./CreateNoteButton";
 
 const Notes = () => {
   const notes = useNotesStore((state) => state.notes);
@@ -17,6 +18,8 @@ const Notes = () => {
           <p>{note.content}</p>
         </article>
       ))}
+
+      <CreateNoteButton />
     </section>
   );
 };
