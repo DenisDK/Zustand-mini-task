@@ -12,3 +12,14 @@ export function getByProperty<T, K extends keyof T>(
 ): T | undefined {
   return items.find((item) => item[key] === value);
 }
+
+export function updateProperty<T, K extends keyof T>(
+  item: T,
+  key: K,
+  value: T[K],
+): T {
+  return {
+    ...item,
+    [key]: value,
+  };
+}
