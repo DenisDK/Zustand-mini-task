@@ -10,6 +10,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { useNotesStore } from "../store/notes.store";
 
 type CreateNoteDialogProps = {
   open: boolean;
@@ -19,6 +20,26 @@ type CreateNoteDialogProps = {
 const CreateNoteDialog = ({ open, onOpenChange }: CreateNoteDialogProps) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+
+  const addNote = useNotesStore((state) => state.addNote);
+
+  const handleCreateNote = () => {
+    if (!title.trim()) return;
+
+    addNote({
+      id: crypto.randomUUID(),
+      title: title.trim(),
+      content: content.trim(),
+      category: "uncategorized",
+      color: "yellow",
+      isPinned: false,
+      createdAt: new Date(),
+    });
+
+    setTitle("");
+    setContent("");
+    onOpenChange(false);
+  };
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -50,7 +71,12 @@ const CreateNoteDialog = ({ open, onOpenChange }: CreateNoteDialogProps) => {
             />
           </div>
 
-          <Button variant="outline" className="w-full" type="button">
+          <Button
+            variant="outline"
+            className="w-full"
+            type="button"
+            onClick={handleCreateNote}
+          >
             Create Note
           </Button>
         </div>
