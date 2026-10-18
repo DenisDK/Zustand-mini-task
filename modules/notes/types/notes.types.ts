@@ -27,4 +27,5 @@ export type Note = {
 export type NotesStore = {
   notes: Note[];
   addNote: (note: Note) => void;
+  removeNote: (id: string) => void;
 };

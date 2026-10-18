@@ -8,4 +8,9 @@ export const useNotesStore = create<NotesStore>((set) => ({
     set((state) => ({
       notes: [...state.notes, note],
     })),
+
+  removeNote: (id) =>
+    set((state) => ({
+      notes: state.notes.filter((note) => note.id !== id),
+    })),
 }));
