@@ -13,4 +13,11 @@ export const useNotesStore = create<NotesStore>((set) => ({
     set((state) => ({
       notes: state.notes.filter((note) => note.id !== id),
     })),
+
+  togglePin: (id: string) =>
+    set((state) => ({
+      notes: state.notes.map((note) =>
+        note.id === id ? { ...note, isPinned: !note.isPinned } : note,
+      ),
+    })),
 }));

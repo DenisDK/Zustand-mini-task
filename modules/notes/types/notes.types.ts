@@ -28,4 +28,5 @@ export type NotesStore = {
   notes: Note[];
   addNote: (note: Note) => void;
   removeNote: (id: string) => void;
+  togglePin: (id: string) => void;
 };
