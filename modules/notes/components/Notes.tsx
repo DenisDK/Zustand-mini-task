@@ -12,6 +12,7 @@ import { FaRegStar } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 import { IoPencil } from "react-icons/io5";
 import CreateNoteDialog from "./CreateNoteDialog";
+import { Separator } from "@/components/ui/separator";
 
 const Notes = () => {
   const notes = useNotesStore((state) => state.notes);
@@ -31,7 +32,10 @@ const Notes = () => {
         {notes.map((note) => (
           <article key={note.id} className="rounded-2xl border bg-white/5 p-2">
             <h3>{note.title}</h3>
-            <p>{note.content}</p>
+
+            <Separator className={"mt-1"} />
+
+            <p className="mt-1">{note.content}</p>
 
             <div className="flex items-center gap-2 mt-2">
               <Button
