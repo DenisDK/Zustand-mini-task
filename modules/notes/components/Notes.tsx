@@ -22,49 +22,53 @@ const Notes = () => {
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
 
   return (
-    <section>
+    <section className="">
       <h2>My Notes</h2>
 
       <p>Total notes: {notes.length}</p>
 
-      {notes.map((note) => (
-        <article key={note.id}>
-          <h3>{note.title}</h3>
-          <p>{note.content}</p>
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-4 lg:grid-cols-5 mt-5">
+        {notes.map((note) => (
+          <article key={note.id} className="rounded-2xl border bg-white/5 p-2">
+            <h3>{note.title}</h3>
+            <p>{note.content}</p>
 
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={() => togglePin(note.id)}
-          >
-            {note.isPinned ? (
-              // <FaRegStar className="text-yellow-500" />
-              <FaStar className="text-yellow-500" />
-            ) : (
-              <FaRegStar />
-            )}
-          </Button>
+            <div className="flex items-center gap-2 mt-2">
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={() => togglePin(note.id)}
+              >
+                {note.isPinned ? (
+                  // <FaRegStar className="text-yellow-500" />
+                  <FaStar className="text-yellow-500" />
+                ) : (
+                  <FaRegStar />
+                )}
+              </Button>
 
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={() => {
-              setSelectedNote(note);
-              setIsEditDialogOpen(true);
-            }}
-          >
-            <IoPencil />
-          </Button>
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={() => {
+                  setSelectedNote(note);
+                  setIsEditDialogOpen(true);
+                }}
+              >
+                <IoPencil />
+              </Button>
 
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={() => removeNote(note.id)}
-          >
-            <IoClose />
-          </Button>
-        </article>
-      ))}
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={() => removeNote(note.id)}
+              >
+                <IoClose />
+              </Button>
+            </div>
+          </article>
+        ))}
+      </div>
 
       <CreateNoteButton />
 

@@ -9,7 +9,7 @@ const CreateNoteButton = () => {
 
   return (
     <>
-      <Button variant="outline" onClick={() => setOpen(true)}>
+      <Button variant="outline" className="mt-5" onClick={() => setOpen(true)}>
         + New Note
       </Button>
 
