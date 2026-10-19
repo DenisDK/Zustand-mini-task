@@ -1,8 +1,7 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
 import CreateNoteDialog from "./CreateNoteDialog";
 
 const CreateNoteButton = () => {
@@ -14,7 +13,11 @@ const CreateNoteButton = () => {
         + New Note
       </Button>
 
-      <CreateNoteDialog open={open} onOpenChange={setOpen} />
+      <CreateNoteDialog
+        key={open ? "create-open" : "create-closed"}
+        open={open}
+        onOpenChange={setOpen}
+      />
     </>
   );
 };

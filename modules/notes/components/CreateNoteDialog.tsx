@@ -11,33 +11,45 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useNotesStore } from "../store/notes.store";
+import type { Note } from "../types/notes.types";
 
 type CreateNoteDialogProps = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  note?: Note;
 };
 
-const CreateNoteDialog = ({ open, onOpenChange }: CreateNoteDialogProps) => {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+const CreateNoteDialog = ({
+  open,
+  onOpenChange,
+  note,
+}: CreateNoteDialogProps) => {
+  const [title, setTitle] = useState(note?.title ?? "");
+  const [content, setContent] = useState(note?.content ?? "");
 
   const addNote = useNotesStore((state) => state.addNote);
+  const updateNote = useNotesStore((state) => state.updateNote);
 
-  const handleCreateNote = () => {
+  const handleSubmit = () => {
     if (!title.trim()) return;
 
-    addNote({
-      id: crypto.randomUUID(),
-      title: title.trim(),
-      content: content.trim(),
-      category: "uncategorized",
-      color: "yellow",
-      isPinned: false,
-      createdAt: new Date(),
-    });
+    if (note) {
+      updateNote(note.id, {
+        title: title.trim(),
+        content: content.trim(),
+      });
+    } else {
+      addNote({
+        id: crypto.randomUUID(),
+        title: title.trim(),
+        content: content.trim(),
+        category: "uncategorized",
+        color: "yellow",
+        isPinned: false,
+        createdAt: new Date(),
+      });
+    }
 
-    setTitle("");
-    setContent("");
     onOpenChange(false);
   };
 
@@ -45,7 +57,7 @@ const CreateNoteDialog = ({ open, onOpenChange }: CreateNoteDialogProps) => {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Create a new note</DialogTitle>
+          <DialogTitle>{note ? "Edit note" : "Create a new note"}</DialogTitle>
         </DialogHeader>
 
         <div className="space-y-4">
@@ -75,9 +87,9 @@ const CreateNoteDialog = ({ open, onOpenChange }: CreateNoteDialogProps) => {
             variant="outline"
             className="w-full"
             type="button"
-            onClick={handleCreateNote}
+            onClick={handleSubmit}
           >
-            Create Note
+            {note ? "Save Changes" : "Create Note"}
           </Button>
         </div>
       </DialogContent>
