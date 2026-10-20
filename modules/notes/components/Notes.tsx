@@ -5,14 +5,14 @@ import { useNotesStore } from "../store/notes.store";
 import CreateNoteButton from "./CreateNoteButton";
 import { useState } from "react";
 import type { Note } from "../types/notes.types";
+import { Separator } from "@/components/ui/separator";
+import CreateNoteDialog from "./CreateNoteDialog";
 
 // Icons
-import { IoClose } from "react-icons/io5";
 import { FaRegStar } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 import { IoPencil } from "react-icons/io5";
-import CreateNoteDialog from "./CreateNoteDialog";
-import { Separator } from "@/components/ui/separator";
+import { LuTrash2 } from "react-icons/lu";
 
 const Notes = () => {
   const notes = useNotesStore((state) => state.notes);
@@ -28,47 +28,63 @@ const Notes = () => {
 
       <p>Total notes: {notes.length}</p>
 
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-4 lg:grid-cols-5 mt-5">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 lg:grid-cols-4 mt-5">
         {notes.map((note) => (
-          <article key={note.id} className="rounded-2xl border bg-white/5 p-2">
-            <h3>{note.title}</h3>
-
-            <Separator className={"mt-1"} />
-
-            <p className="mt-1">{note.content}</p>
-
-            <div className="flex items-center gap-2 mt-2">
+          <article
+            key={note.id}
+            className="rounded-2xl border min-h-56 bg-white/5 p-2 flex flex-col h-full hover:bg-white/8 duration-300"
+          >
+            <div className="flex items-center justify-between">
+              <h3>{note.title}</h3>
               <Button
                 variant="outline"
                 size="icon"
+                className="hover:text-yellow-500"
                 onClick={() => togglePin(note.id)}
               >
                 {note.isPinned ? (
-                  // <FaRegStar className="text-yellow-500" />
-                  <FaStar className="text-yellow-500" />
+                  // <FaStar className="text-yellow-500" />
+                  <FaRegStar className="text-yellow-500" />
                 ) : (
                   <FaRegStar />
                 )}
               </Button>
+            </div>
 
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={() => {
-                  setSelectedNote(note);
-                  setIsEditDialogOpen(true);
-                }}
-              >
-                <IoPencil />
-              </Button>
+            <Separator className={"mt-1"} />
 
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={() => removeNote(note.id)}
-              >
-                <IoClose />
-              </Button>
+            <p className="my-2">{note.content}</p>
+
+            <div className="mt-auto flex justify-between items-center">
+              <div className="">
+                {note.createdAt.toLocaleDateString("en-US", {
+                  month: "short",
+                  day: "numeric",
+                  year: "numeric",
+                })}
+              </div>
+              <div className="flex items-center gap-2">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="hover:text-blue-400"
+                  onClick={() => {
+                    setSelectedNote(note);
+                    setIsEditDialogOpen(true);
+                  }}
+                >
+                  <IoPencil />
+                </Button>
+
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="hover:text-red-400"
+                  onClick={() => removeNote(note.id)}
+                >
+                  <LuTrash2 />
+                </Button>
+              </div>
             </div>
           </article>
         ))}
