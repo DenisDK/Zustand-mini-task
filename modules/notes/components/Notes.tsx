@@ -7,6 +7,7 @@ import { useState } from "react";
 import type { Note } from "../types/notes.types";
 import { Separator } from "@/components/ui/separator";
 import CreateNoteDialog from "./CreateNoteDialog";
+import NoteSearch from "./NoteSearch";
 
 // Icons
 import { FaRegStar } from "react-icons/fa";
@@ -22,14 +23,27 @@ const Notes = () => {
   const [selectedNote, setSelectedNote] = useState<Note | undefined>();
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
 
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredNotes = notes.filter((note) => {
+    const query = searchQuery.trim().toLowerCase();
+
+    return (
+      note.title.toLowerCase().includes(query) ||
+      note.content.toLowerCase().includes(query)
+    );
+  });
+
   return (
     <section className="">
       <h2>My Notes</h2>
 
       <p>Total notes: {notes.length}</p>
 
+      <NoteSearch value={searchQuery} onChange={setSearchQuery} />
+
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 lg:grid-cols-4 mt-5">
-        {notes.map((note) => (
+        {filteredNotes.map((note) => (
           <article
             key={note.id}
             className="rounded-2xl border min-h-56 bg-white/5 p-2 flex flex-col h-full hover:bg-white/8 duration-300"
