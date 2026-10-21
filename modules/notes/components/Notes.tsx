@@ -42,67 +42,75 @@ const Notes = () => {
 
       <NoteSearch value={searchQuery} onChange={setSearchQuery} />
 
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 lg:grid-cols-4 mt-5">
-        {filteredNotes.map((note) => (
-          <article
-            key={note.id}
-            className="rounded-2xl border min-h-56 bg-white/5 p-2 flex flex-col h-full hover:bg-white/8 duration-300"
-          >
-            <div className="flex items-center justify-between">
-              <h3>{note.title}</h3>
-              <Button
-                variant="outline"
-                size="icon"
-                className="hover:text-yellow-500"
-                onClick={() => togglePin(note.id)}
-              >
-                {note.isPinned ? (
-                  // <FaStar className="text-yellow-500" />
-                  <FaRegStar className="text-yellow-500" />
-                ) : (
-                  <FaRegStar />
-                )}
-              </Button>
-            </div>
-
-            <Separator className={"mt-1"} />
-
-            <p className="my-2">{note.content}</p>
-
-            <div className="mt-auto flex justify-between items-center">
-              <div className="">
-                {note.createdAt.toLocaleDateString("en-US", {
-                  month: "short",
-                  day: "numeric",
-                  year: "numeric",
-                })}
-              </div>
-              <div className="flex items-center gap-2">
+      {filteredNotes.length > 0 ? (
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 lg:grid-cols-4 mt-5">
+          {filteredNotes.map((note) => (
+            <article
+              key={note.id}
+              className="rounded-2xl border min-h-56 bg-white/5 p-2 flex flex-col h-full hover:bg-white/8 duration-300"
+            >
+              <div className="flex items-center justify-between">
+                <h3>{note.title}</h3>
                 <Button
                   variant="outline"
                   size="icon"
-                  className="hover:text-blue-400"
-                  onClick={() => {
-                    setSelectedNote(note);
-                    setIsEditDialogOpen(true);
-                  }}
+                  className="hover:text-yellow-500"
+                  onClick={() => togglePin(note.id)}
                 >
-                  <IoPencil />
-                </Button>
-
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="hover:text-red-400"
-                  onClick={() => removeNote(note.id)}
-                >
-                  <LuTrash2 />
+                  {note.isPinned ? (
+                    // <FaStar className="text-yellow-500" />
+                    <FaRegStar className="text-yellow-500" />
+                  ) : (
+                    <FaRegStar />
+                  )}
                 </Button>
               </div>
-            </div>
-          </article>
-        ))}
-      </div>
+
+              <Separator className={"mt-1"} />
+
+              <p className="my-2">{note.content}</p>
+
+              <div className="mt-auto flex justify-between items-center">
+                <div className="">
+                  {note.createdAt.toLocaleDateString("en-US", {
+                    month: "short",
+                    day: "numeric",
+                    year: "numeric",
+                  })}
+                </div>
+                <div className="flex items-center gap-2">
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="hover:text-blue-400"
+                    onClick={() => {
+                      setSelectedNote(note);
+                      setIsEditDialogOpen(true);
+                    }}
+                  >
+                    <IoPencil />
+                  </Button>
+
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="hover:text-red-400"
+                    onClick={() => removeNote(note.id)}
+                  >
+                    <LuTrash2 />
+                  </Button>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <p className="mt-5 text-center text-muted-foreground">
+          {notes.length === 0
+            ? "You don't have any notes yet. Create your first note! :("
+            : "No notes found. Try a different search. :("}
+        </p>
+      )}
 
       <CreateNoteButton />
 

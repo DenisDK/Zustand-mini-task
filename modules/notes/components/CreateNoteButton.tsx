@@ -8,7 +8,7 @@ const CreateNoteButton = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <>
+    <div className="flex items-center justify-end">
       <Button variant="outline" className="mt-5" onClick={() => setOpen(true)}>
         + New Note
       </Button>
@@ -18,7 +18,7 @@ const CreateNoteButton = () => {
         open={open}
         onOpenChange={setOpen}
       />
-    </>
+    </div>
   );
 };
 
