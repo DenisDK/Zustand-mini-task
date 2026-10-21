@@ -8,12 +8,16 @@ import type { Note } from "../types/notes.types";
 import { Separator } from "@/components/ui/separator";
 import CreateNoteDialog from "./CreateNoteDialog";
 import NoteSearch from "./NoteSearch";
+import type { NoteCategory } from "../types/notes.types";
+import NoteFilter from "./NoteFilter";
 
 // Icons
 import { FaRegStar } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 import { IoPencil } from "react-icons/io5";
 import { LuTrash2 } from "react-icons/lu";
+
+type NoteFilter = "all" | "pinned" | NoteCategory;
 
 const Notes = () => {
   const notes = useNotesStore((state) => state.notes);
@@ -25,13 +29,21 @@ const Notes = () => {
 
   const [searchQuery, setSearchQuery] = useState("");
 
+  const [filter, setFilter] = useState<NoteFilter>("all");
+
   const filteredNotes = notes.filter((note) => {
     const query = searchQuery.trim().toLowerCase();
 
-    return (
+    const matchesSearch =
       note.title.toLowerCase().includes(query) ||
-      note.content.toLowerCase().includes(query)
-    );
+      note.content.toLowerCase().includes(query);
+
+    const matchesFilter =
+      filter === "all" ||
+      (filter === "pinned" && note.isPinned) ||
+      note.category === filter;
+
+    return matchesSearch && matchesFilter;
   });
 
   const sortedNotes = [...filteredNotes].sort((a, b) => {
@@ -48,7 +60,10 @@ const Notes = () => {
 
       <p>Total notes: {notes.length}</p>
 
-      <NoteSearch value={searchQuery} onChange={setSearchQuery} />
+      <div className="flex items-center gap-2 mt-5">
+        <NoteSearch value={searchQuery} onChange={setSearchQuery} />
+        <NoteFilter value={filter} onChange={setFilter} />
+      </div>
 
       {filteredNotes.length > 0 ? (
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 lg:grid-cols-4 mt-5">
