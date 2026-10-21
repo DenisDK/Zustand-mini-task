@@ -10,7 +10,7 @@ const NoteSearch = ({ value, onChange }: NoteSearchProps) => {
     <Input
       type="text"
       placeholder="Search notes..."
-      className="w-full px-3 py-2 mt-5"
+      className="w-full px-3 py-2"
       value={value}
       onChange={(event) => onChange(event.target.value)}
     />
