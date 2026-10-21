@@ -17,7 +17,7 @@ type NoteFilterProps = {
 };
 
 const filterItems = [
-  { label: "All notes", value: "all" },
+  { label: "All", value: "all" },
   { label: "Pinned", value: "pinned" },
   { label: "Work", value: "work" },
   { label: "Study", value: "study" },
