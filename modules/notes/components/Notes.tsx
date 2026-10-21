@@ -34,6 +34,14 @@ const Notes = () => {
     );
   });
 
+  const sortedNotes = [...filteredNotes].sort((a, b) => {
+    if (a.isPinned !== b.isPinned) {
+      return Number(b.isPinned) - Number(a.isPinned);
+    }
+
+    return b.createdAt.getTime() - a.createdAt.getTime();
+  });
+
   return (
     <section className="">
       <h2>My Notes</h2>
@@ -44,7 +52,7 @@ const Notes = () => {
 
       {filteredNotes.length > 0 ? (
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 lg:grid-cols-4 mt-5">
-          {filteredNotes.map((note) => (
+          {sortedNotes.map((note) => (
             <article
               key={note.id}
               className="rounded-2xl border min-h-56 bg-white/5 p-2 flex flex-col h-full hover:bg-white/8 duration-300"
