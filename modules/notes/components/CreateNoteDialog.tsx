@@ -51,6 +51,7 @@ const CreateNoteDialog = ({
       updateNote(note.id, {
         title: title.trim(),
         content: content.trim(),
+        category,
       });
     } else {
       addNote({

@@ -29,5 +29,8 @@ export type NotesStore = {
   addNote: (note: Note) => void;
   removeNote: (id: string) => void;
   togglePin: (id: string) => void;
-  updateNote: (id: string, updates: Pick<Note, "title" | "content">) => void;
+  updateNote: (
+    id: string,
+    updates: Pick<Note, "title" | "content" | "category">,
+  ) => void;
 };
