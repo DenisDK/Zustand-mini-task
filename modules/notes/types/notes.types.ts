@@ -31,6 +31,6 @@ export type NotesStore = {
   togglePin: (id: string) => void;
   updateNote: (
     id: string,
-    updates: Pick<Note, "title" | "content" | "category">,
+    updates: Pick<Note, "title" | "content" | "category" | "color">,
   ) => void;
 };

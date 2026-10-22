@@ -11,7 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useNotesStore } from "../store/notes.store";
-import type { Note, NoteCategory } from "../types/notes.types";
+import type { Note, NoteCategory, NoteColor } from "../types/notes.types";
 import {
   Select,
   SelectContent,
@@ -21,7 +21,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { filterItems } from "./NoteFilter";
+import { filterItems } from "../constants/noteCategory";
+import { colorItems } from "../constants/noteColors";
 
 type CreateNoteDialogProps = {
   open: boolean;
@@ -41,6 +42,8 @@ const CreateNoteDialog = ({
     note?.category ?? "uncategorized",
   );
 
+  const [color, setColor] = useState<NoteColor>(note?.color ?? "yellow");
+
   const addNote = useNotesStore((state) => state.addNote);
   const updateNote = useNotesStore((state) => state.updateNote);
 
@@ -52,6 +55,7 @@ const CreateNoteDialog = ({
         title: title.trim(),
         content: content.trim(),
         category,
+        color,
       });
     } else {
       addNote({
@@ -59,7 +63,7 @@ const CreateNoteDialog = ({
         title: title.trim(),
         content: content.trim(),
         category: category,
-        color: "yellow",
+        color: color,
         isPinned: false,
         createdAt: new Date(),
       });
@@ -70,7 +74,7 @@ const CreateNoteDialog = ({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className={"border"}>
+      <DialogContent className={"border p-5"}>
         <DialogHeader>
           <DialogTitle>{note ? "Edit note" : "Create a new note"}</DialogTitle>
         </DialogHeader>
@@ -116,6 +120,40 @@ const CreateNoteDialog = ({
                           {item.label}
                         </SelectItem>
                       ))}
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="">
+              <label htmlFor="color">Color</label>
+              <Select
+                value={color}
+                id="color"
+                onValueChange={(newValue) => {
+                  if (newValue !== null) {
+                    setColor(newValue as NoteColor);
+                  }
+                }}
+              >
+                <SelectTrigger className="mt-1">
+                  <SelectValue placeholder="Filter notes" />
+                </SelectTrigger>
+
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectLabel>Color</SelectLabel>
+                    {colorItems.map((item) => (
+                      <SelectItem key={item.value} value={item.value}>
+                        <div className="flex items-center gap-2">
+                          <span
+                            className="size-3.5 rounded-full border border-black/10"
+                            style={{ backgroundColor: item.hex }}
+                          />
+                          {item.label}
+                        </div>
+                      </SelectItem>
+                    ))}
                   </SelectGroup>
                 </SelectContent>
               </Select>

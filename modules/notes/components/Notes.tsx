@@ -10,6 +10,7 @@ import CreateNoteDialog from "./CreateNoteDialog";
 import NoteSearch from "./NoteSearch";
 import type { NoteCategory } from "../types/notes.types";
 import NoteFilter from "./NoteFilter";
+import { colorItems } from "../constants/noteColors";
 
 // Icons
 import { FaRegStar } from "react-icons/fa";
@@ -70,10 +71,15 @@ const Notes = () => {
           {sortedNotes.map((note) => (
             <article
               key={note.id}
-              className="rounded-2xl border min-h-56 bg-white/5 p-2 flex flex-col h-full hover:bg-white/8 duration-300"
+              className="rounded-2xl border min-h-56 p-2 flex flex-col h-full duration-300 hover:brightness-85 text-[#202020]"
+              style={{
+                backgroundColor: colorItems.find(
+                  (item) => item.value === note.color,
+                )?.hex,
+              }}
             >
               <div className="flex items-center justify-between">
-                <h3>{note.title}</h3>
+                <h3 className="font-semibold">{note.title}</h3>
                 <Button
                   variant="outline"
                   size="icon"
@@ -89,7 +95,7 @@ const Notes = () => {
                 </Button>
               </div>
 
-              <Separator className={"mt-1"} />
+              <Separator className={"mt-1 bg-[#202020]"} />
 
               <p className="my-2">{note.content}</p>
 
