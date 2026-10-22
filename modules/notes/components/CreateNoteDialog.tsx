@@ -57,7 +57,7 @@ const CreateNoteDialog = ({
         id: crypto.randomUUID(),
         title: title.trim(),
         content: content.trim(),
-        category: "uncategorized",
+        category: category,
         color: "yellow",
         isPinned: false,
         createdAt: new Date(),
