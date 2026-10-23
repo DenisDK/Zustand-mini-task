@@ -6,13 +6,30 @@ export type NoteCategory =
   | "tasks"
   | "uncategorized";
 
+// export type NoteColor =
+//   | "yellow"
+//   | "pink"
+//   | "blue"
+//   | "green"
+//   | "purple"
+//   | "peach";
+
 export type NoteColor =
   | "yellow"
   | "pink"
   | "blue"
   | "green"
   | "purple"
-  | "peach";
+  | "peach"
+  | "rose"
+  | "cyan"
+  | "lime"
+  | "apricot"
+  | "lavender"
+  | "silver"
+  | "periwinkle"
+  | "coral"
+  | "mint";
 
 export type Note = {
   id: string;
