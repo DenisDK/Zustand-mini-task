@@ -11,6 +11,7 @@ import NoteSearch from "./NoteSearch";
 import type { NoteCategory } from "../types/notes.types";
 import NoteFilter from "./NoteFilter";
 import { colorItems } from "../constants/noteColors";
+import NoteDeleteDialog from "./NoteDeleteDialog";
 
 // Icons
 import { FaRegStar } from "react-icons/fa";
@@ -31,6 +32,9 @@ const Notes = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const [filter, setFilter] = useState<NoteFilter>("all");
+
+  const [noteToDelete, setNoteToDelete] = useState<Note | undefined>();
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 
   const filteredNotes = notes.filter((note) => {
     const query = searchQuery.trim().toLowerCase();
@@ -124,7 +128,10 @@ const Notes = () => {
                     variant="outline"
                     size="icon"
                     className="hover:text-red-400"
-                    onClick={() => removeNote(note.id)}
+                    onClick={() => {
+                      setNoteToDelete(note);
+                      setIsDeleteDialogOpen(true);
+                    }}
                   >
                     <LuTrash2 />
                   </Button>
@@ -142,6 +149,17 @@ const Notes = () => {
       )}
 
       <CreateNoteButton />
+
+      <NoteDeleteDialog
+        open={isDeleteDialogOpen}
+        onOpenChange={setIsDeleteDialogOpen}
+        onConfirm={() => {
+          if (noteToDelete) {
+            removeNote(noteToDelete.id);
+            setNoteToDelete(undefined);
+          }
+        }}
+      />
 
       {/* Редагування нотатки */}
       <CreateNoteDialog
