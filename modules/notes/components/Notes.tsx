@@ -75,7 +75,7 @@ const Notes = () => {
           {sortedNotes.map((note) => (
             <article
               key={note.id}
-              className="rounded-2xl border min-h-56 p-2 flex flex-col h-full duration-300 hover:brightness-85 text-[#202020]"
+              className="rounded-2xl border h-60 overflow-hidden p-2 flex flex-col duration-300 hover:brightness-85 text-[#202020]"
               style={{
                 backgroundColor: colorItems.find(
                   (item) => item.value === note.color,
@@ -87,7 +87,7 @@ const Notes = () => {
                 <Button
                   variant="outline"
                   size="icon"
-                  className="hover:text-yellow-500"
+                  className="hover:text-yellow-500 shadow-none"
                   onClick={() => togglePin(note.id)}
                 >
                   {note.isPinned ? (
@@ -101,7 +101,9 @@ const Notes = () => {
 
               <Separator className={"mt-1 bg-[#202020]"} />
 
-              <p className="my-2">{note.content}</p>
+              <p className="my-2 line-clamp-5 whitespace-pre-wrap wrap-break-word">
+                {note.content}
+              </p>
 
               <div className="mt-auto flex justify-between items-center">
                 <div className="">
@@ -111,11 +113,11 @@ const Notes = () => {
                     year: "numeric",
                   })}
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center">
                   <Button
                     variant="outline"
                     size="icon"
-                    className="hover:text-blue-400"
+                    className="hover:text-blue-400 shadow-none"
                     onClick={() => {
                       setSelectedNote(note);
                       setIsEditDialogOpen(true);
@@ -127,7 +129,7 @@ const Notes = () => {
                   <Button
                     variant="outline"
                     size="icon"
-                    className="hover:text-red-400"
+                    className="hover:text-red-400 shadow-none"
                     onClick={() => {
                       setNoteToDelete(note);
                       setIsDeleteDialogOpen(true);
