@@ -4,6 +4,7 @@ import CreateNoteDialog from "./components/CreateNoteDialog";
 import NoteSearch from "./components/NoteSearch";
 import NoteFilter from "./components/NoteFilter";
 import NoteDeleteDialog from "./components/NoteDeleteDialog";
+import NotePreviewDialog from "./components/NotePreviewDialog";
 
 export {
   Notes,
@@ -12,4 +13,5 @@ export {
   NoteSearch,
   NoteFilter,
   NoteDeleteDialog,
+  NotePreviewDialog,
 };

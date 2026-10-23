@@ -18,6 +18,7 @@ import { FaRegStar } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 import { IoPencil } from "react-icons/io5";
 import { LuTrash2 } from "react-icons/lu";
+import NotePreviewDialog from "./NotePreviewDialog";
 
 type NoteFilter = "all" | "pinned" | NoteCategory;
 
@@ -35,6 +36,9 @@ const Notes = () => {
 
   const [noteToDelete, setNoteToDelete] = useState<Note | undefined>();
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+  const [previewNote, setPreviewNote] = useState<Note | undefined>();
 
   const filteredNotes = notes.filter((note) => {
     const query = searchQuery.trim().toLowerCase();
@@ -75,6 +79,10 @@ const Notes = () => {
           {sortedNotes.map((note) => (
             <article
               key={note.id}
+              onClick={() => {
+                setPreviewNote(note);
+                setIsPreviewOpen(true);
+              }}
               className="rounded-2xl border h-60 overflow-hidden p-2 flex flex-col duration-300 hover:brightness-85 text-[#202020]"
               style={{
                 backgroundColor: colorItems.find(
@@ -88,7 +96,10 @@ const Notes = () => {
                   variant="outline"
                   size="icon"
                   className="hover:text-yellow-500 shadow-none"
-                  onClick={() => togglePin(note.id)}
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    togglePin(note.id);
+                  }}
                 >
                   {note.isPinned ? (
                     // <FaStar className="text-yellow-500" />
@@ -99,7 +110,7 @@ const Notes = () => {
                 </Button>
               </div>
 
-              <Separator className={"mt-1 bg-[#202020]"} />
+              <Separator className={"mt-1 bg-[#202020]/20"} />
 
               <p className="my-2 line-clamp-5 whitespace-pre-wrap wrap-break-word">
                 {note.content}
@@ -118,7 +129,8 @@ const Notes = () => {
                     variant="outline"
                     size="icon"
                     className="hover:text-blue-400 shadow-none"
-                    onClick={() => {
+                    onClick={(event) => {
+                      event.stopPropagation();
                       setSelectedNote(note);
                       setIsEditDialogOpen(true);
                     }}
@@ -130,7 +142,8 @@ const Notes = () => {
                     variant="outline"
                     size="icon"
                     className="hover:text-red-400 shadow-none"
-                    onClick={() => {
+                    onClick={(event) => {
+                      event.stopPropagation();
                       setNoteToDelete(note);
                       setIsDeleteDialogOpen(true);
                     }}
@@ -152,6 +165,7 @@ const Notes = () => {
 
       <CreateNoteButton />
 
+      {/* Підтвердження видалення */}
       <NoteDeleteDialog
         open={isDeleteDialogOpen}
         onOpenChange={setIsDeleteDialogOpen}
@@ -159,6 +173,19 @@ const Notes = () => {
           if (noteToDelete) {
             removeNote(noteToDelete.id);
             setNoteToDelete(undefined);
+          }
+        }}
+      />
+
+      {/* Повна нотатка */}
+      <NotePreviewDialog
+        note={previewNote}
+        open={isPreviewOpen}
+        onOpenChange={(open) => {
+          setIsPreviewOpen(open);
+
+          if (!open) {
+            setPreviewNote(undefined);
           }
         }}
       />
