@@ -17,19 +17,12 @@ export type NoteCategory =
 export type NoteColor =
   | "yellow"
   | "pink"
-  | "blue"
   | "green"
   | "purple"
-  | "peach"
   | "rose"
   | "cyan"
-  | "lime"
-  | "apricot"
   | "lavender"
-  | "silver"
-  | "periwinkle"
-  | "coral"
-  | "mint";
+  | "periwinkle";
 
 export type Note = {
   id: string;
