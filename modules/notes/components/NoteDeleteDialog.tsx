@@ -26,17 +26,29 @@ const NoteDeleteDialog = ({
   };
   return (
     <AlertDialog open={open} onOpenChange={onOpenChange}>
-      <AlertDialogContent className={"p-0 border"}>
-        <AlertDialogHeader className="p-5">
-          <AlertDialogTitle>Delete this note?</AlertDialogTitle>
-          <AlertDialogDescription>
+      <AlertDialogContent className="overflow-hidden rounded-xl border border-gray-300 bg-[#ebebeb] p-0 text-gray-900 shadow-xl">
+        <AlertDialogHeader className="p-6">
+          <AlertDialogTitle className="text-lg font-semibold text-gray-900">
+            Delete this note?
+          </AlertDialogTitle>
+
+          <AlertDialogDescription className="text-sm leading-relaxed text-gray-500">
             This action cannot be undone. This will permanently delete your
             note.
           </AlertDialogDescription>
         </AlertDialogHeader>
-        <AlertDialogFooter className="bg-[#202020] border-t border-t-[#505050] rounded-b-xl pb-5 pt-4 px-5">
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={handleDelete}>Delete</AlertDialogAction>
+
+        <AlertDialogFooter className="flex-row justify-end gap-2 border-t border-gray-300 bg-[#dfdfdf] px-6 py-4">
+          <AlertDialogCancel className="mt-0 border border-[#c0c0c0]! bg-[#ccc]! text-gray-700 hover:bg-[#b8b8b8]! hover:text-gray-900">
+            Cancel
+          </AlertDialogCancel>
+
+          <AlertDialogAction
+            onClick={handleDelete}
+            className="bg-red-500 text-white hover:bg-red-600 border border-[#c0c0c0]"
+          >
+            Delete
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
