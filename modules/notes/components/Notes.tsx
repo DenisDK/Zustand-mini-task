@@ -95,7 +95,7 @@ const Notes = () => {
                 <Button
                   variant="outline"
                   size="icon"
-                  className="hover:text-yellow-500 shadow-none"
+                  className="hover:text-yellow-500 shadow-none border-0"
                   onClick={(event) => {
                     event.stopPropagation();
                     togglePin(note.id);
@@ -128,7 +128,7 @@ const Notes = () => {
                   <Button
                     variant="outline"
                     size="icon"
-                    className="hover:text-blue-400 shadow-none"
+                    className="hover:text-blue-400 shadow-none border-0"
                     onClick={(event) => {
                       event.stopPropagation();
                       setSelectedNote(note);
@@ -141,7 +141,7 @@ const Notes = () => {
                   <Button
                     variant="outline"
                     size="icon"
-                    className="hover:text-red-400 shadow-none"
+                    className="hover:text-red-400 shadow-none border-0"
                     onClick={(event) => {
                       event.stopPropagation();
                       setNoteToDelete(note);
