@@ -39,7 +39,7 @@ const NoteDeleteDialog = ({
         </AlertDialogHeader>
 
         <AlertDialogFooter className="flex-row justify-end gap-2 border-t border-gray-300 bg-[#dfdfdf] px-6 py-4">
-          <AlertDialogCancel className="mt-0 border border-[#c0c0c0]! bg-[#ccc]! text-gray-700 hover:bg-[#b8b8b8]! hover:text-gray-900">
+          <AlertDialogCancel className="mt-0 border border-[#c0c0c0]! bg-[#ccc]! text-gray-700 hover:bg-[#b8b8b8]! hover:text-black">
             Cancel
           </AlertDialogCancel>
 
