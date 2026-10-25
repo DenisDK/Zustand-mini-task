@@ -74,18 +74,26 @@ const CreateNoteDialog = ({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className={"border p-5"}>
+      <DialogContent
+        className={
+          "border p-5 border-[#c0c0c0] bg-[#ebebeb] text-gray-900 shadow-xl"
+        }
+      >
         <DialogHeader>
-          <DialogTitle>{note ? "Edit note" : "Create a new note"}</DialogTitle>
+          <DialogTitle className={"text-gray-900"}>
+            {note ? "Edit note" : "Create a new note"}
+          </DialogTitle>
         </DialogHeader>
 
         <div className="space-y-4">
           <div className="flex items-center gap-2">
             <div className="flex-1">
-              <label htmlFor="note-title">Title</label>
+              <label htmlFor="note-title" className="text-gray-900">
+                Title
+              </label>
               <Input
                 id="note-title"
-                className="mt-1"
+                className="mt-1 border-[#c0c0c0]"
                 placeholder="Enter note title..."
                 value={title}
                 onChange={(event) => setTitle(event.target.value)}
@@ -93,7 +101,9 @@ const CreateNoteDialog = ({
             </div>
 
             <div className="">
-              <label htmlFor="category">Category</label>
+              <label htmlFor="category" className="text-gray-900">
+                Category
+              </label>
               <Select
                 value={category}
                 id="category"
@@ -103,20 +113,27 @@ const CreateNoteDialog = ({
                   }
                 }}
               >
-                <SelectTrigger className="mt-1">
+                <SelectTrigger className="mt-1 border-[#c0c0c0]">
                   <SelectValue placeholder="Filter notes" />
                 </SelectTrigger>
 
-                <SelectContent>
+                <SelectContent className="border border-gray-300 bg-[#ebebeb] text-gray-900">
                   <SelectGroup>
-                    <SelectLabel>Category</SelectLabel>
+                    <SelectLabel className="text-gray-900">
+                      Category
+                    </SelectLabel>
+
                     {filterItems
                       .filter(
                         (item) =>
                           item.value !== "all" && item.value !== "pinned",
                       )
                       .map((item) => (
-                        <SelectItem key={item.value} value={item.value}>
+                        <SelectItem
+                          key={item.value}
+                          value={item.value}
+                          className="text-gray-800 focus:bg-[#dcdcdc] focus:text-gray-900 focus:**:text-gray-900!"
+                        >
                           {item.label}
                         </SelectItem>
                       ))}
@@ -126,7 +143,9 @@ const CreateNoteDialog = ({
             </div>
 
             <div className="">
-              <label htmlFor="color">Color</label>
+              <label htmlFor="color" className="text-gray-900">
+                Color
+              </label>
               <Select
                 value={color}
                 id="color"
@@ -136,18 +155,22 @@ const CreateNoteDialog = ({
                   }
                 }}
               >
-                <SelectTrigger className="mt-1">
+                <SelectTrigger className="mt-1 border-[#c0c0c0]">
                   <SelectValue placeholder="Filter notes" />
                 </SelectTrigger>
 
                 <SelectContent>
-                  <SelectGroup>
-                    <SelectLabel>Color</SelectLabel>
+                  <SelectGroup className={"bg-[#ebebeb]"}>
+                    <SelectLabel className={"text-gray-800"}>Color</SelectLabel>
                     {colorItems.map((item) => (
-                      <SelectItem key={item.value} value={item.value}>
+                      <SelectItem
+                        key={item.value}
+                        value={item.value}
+                        className="text-gray-800 focus:bg-[#dcdcdc] focus:text-gray-900! focus:**:text-gray-900!"
+                      >
                         <div className="flex items-center gap-2">
                           <span
-                            className="size-3.5 rounded-full border border-black/10"
+                            className="size-3.5 rounded-full border border-black/15"
                             style={{ backgroundColor: item.hex }}
                           />
                           {item.label}
@@ -164,7 +187,7 @@ const CreateNoteDialog = ({
             <label htmlFor="note-content">Content</label>
             <Textarea
               id="note-content"
-              className="mt-1"
+              className="mt-1 border-[#c0c0c0]"
               placeholder="Write your note..."
               value={content}
               onChange={(event) => setContent(event.target.value)}
@@ -173,7 +196,7 @@ const CreateNoteDialog = ({
 
           <Button
             variant="outline"
-            className="w-full"
+            className="w-full border-[#c0c0c0]! text-gray-700 hover:bg-[#d3d3d3]! hover:text-black"
             type="button"
             onClick={handleSubmit}
           >
