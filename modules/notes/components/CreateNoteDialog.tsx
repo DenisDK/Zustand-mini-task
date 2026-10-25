@@ -76,7 +76,7 @@ const CreateNoteDialog = ({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
         className={
-          "border p-5 border-[#c0c0c0] bg-[#ebebeb] text-gray-900 shadow-xl"
+          "border p-5 border-[#c0c0c0] bg-[#ebebeb] text-gray-900 shadow-xl [&>button:last-child]:text-[#202020] [&>button:last-child]:opacity-70 [&>button:last-child]:hover:opacity-100 [&>button:last-child]:hover:bg-[#202020]/10"
         }
       >
         <DialogHeader>
