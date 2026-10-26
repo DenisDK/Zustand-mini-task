@@ -65,9 +65,9 @@ const Notes = () => {
 
   return (
     <section className="">
-      <h2>My Notes</h2>
+      <h2 className="text-xl font-bold">My Notes</h2>
 
-      <p>Total notes: {notes.length}</p>
+      <p className="text-gray-500 font-medium">Total notes: {notes.length}</p>
 
       <div className="flex items-center gap-2 mt-5">
         <NoteSearch value={searchQuery} onChange={setSearchQuery} />
@@ -83,7 +83,7 @@ const Notes = () => {
                 setPreviewNote(note);
                 setIsPreviewOpen(true);
               }}
-              className="rounded-2xl border h-60 overflow-hidden p-2 flex flex-col duration-300 hover:brightness-85 text-[#202020]"
+              className="rounded-2xl border h-60 overflow-hidden p-2 flex flex-col duration-300 hover:brightness-90 text-[#202020]"
               style={{
                 backgroundColor: colorItems.find(
                   (item) => item.value === note.color,
@@ -95,7 +95,7 @@ const Notes = () => {
                 <Button
                   variant="outline"
                   size="icon"
-                  className="hover:text-yellow-500 shadow-none border-0"
+                  className="hover:text-yellow-500 shadow-none border-0 bg-transparent!"
                   onClick={(event) => {
                     event.stopPropagation();
                     togglePin(note.id);
@@ -128,7 +128,7 @@ const Notes = () => {
                   <Button
                     variant="outline"
                     size="icon"
-                    className="hover:text-blue-400 shadow-none border-0"
+                    className="hover:text-blue-400 shadow-none border-0 bg-transparent!"
                     onClick={(event) => {
                       event.stopPropagation();
                       setSelectedNote(note);
@@ -141,7 +141,7 @@ const Notes = () => {
                   <Button
                     variant="outline"
                     size="icon"
-                    className="hover:text-red-400 shadow-none border-0"
+                    className="hover:text-red-400 shadow-none border-0 bg-transparent!"
                     onClick={(event) => {
                       event.stopPropagation();
                       setNoteToDelete(note);
