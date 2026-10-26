@@ -9,7 +9,11 @@ const CreateNoteButton = () => {
 
   return (
     <div className="flex items-center justify-end">
-      <Button variant="outline" className="mt-5" onClick={() => setOpen(true)}>
+      <Button
+        variant="outline"
+        className="mt-5 border border-[#c0c0c0]! text-gray-600 hover:text-gray-900 hover:bg-[#e7e7e7]!"
+        onClick={() => setOpen(true)}
+      >
         + New Note
       </Button>
 
