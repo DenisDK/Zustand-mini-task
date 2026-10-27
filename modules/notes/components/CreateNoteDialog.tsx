@@ -76,7 +76,7 @@ const CreateNoteDialog = ({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
         className={
-          "border p-5 border-[#c0c0c0] bg-[#ebebeb] text-gray-900 shadow-xl [&>button:last-child]:text-[#202020] [&>button:last-child]:opacity-70 [&>button:last-child]:hover:opacity-100 [&>button:last-child]:hover:bg-[#202020]/10"
+          "border p-5 border-[#c0c0c0] bg-[#f8f8f8] text-gray-900 shadow-xl [&>button:last-child]:text-[#202020] [&>button:last-child]:opacity-70 [&>button:last-child]:hover:opacity-100 [&>button:last-child]:hover:bg-[#202020]/10"
         }
       >
         <DialogHeader>
@@ -117,7 +117,7 @@ const CreateNoteDialog = ({
                   <SelectValue placeholder="Filter notes" />
                 </SelectTrigger>
 
-                <SelectContent className="border border-gray-300 bg-[#ebebeb] text-gray-900">
+                <SelectContent className="border border-gray-300 bg-[#f8f8f8] text-gray-900">
                   <SelectGroup>
                     <SelectLabel className="text-gray-900">
                       Category
@@ -132,7 +132,7 @@ const CreateNoteDialog = ({
                         <SelectItem
                           key={item.value}
                           value={item.value}
-                          className="text-gray-800 focus:bg-[#dcdcdc] focus:text-gray-900 focus:**:text-gray-900!"
+                          className="text-gray-800 focus:bg-[#e7e7e7] focus:text-gray-900 focus:**:text-gray-900!"
                         >
                           {item.label}
                         </SelectItem>
@@ -160,13 +160,13 @@ const CreateNoteDialog = ({
                 </SelectTrigger>
 
                 <SelectContent>
-                  <SelectGroup className={"bg-[#ebebeb]"}>
+                  <SelectGroup className={"bg-[#f8f8f8]"}>
                     <SelectLabel className={"text-gray-800"}>Color</SelectLabel>
                     {colorItems.map((item) => (
                       <SelectItem
                         key={item.value}
                         value={item.value}
-                        className="text-gray-800 focus:bg-[#dcdcdc] focus:text-gray-900! focus:**:text-gray-900!"
+                        className="text-gray-800 focus:bg-[#e7e7e7] focus:text-gray-900! focus:**:text-gray-900!"
                       >
                         <div className="flex items-center gap-2">
                           <span
@@ -196,7 +196,7 @@ const CreateNoteDialog = ({
 
           <Button
             variant="outline"
-            className="w-full border-[#c0c0c0]! text-gray-700 hover:bg-[#d3d3d3]! hover:text-black"
+            className="w-full border-[#c0c0c0]! text-gray-700 hover:bg-[#e7e7e7]! hover:text-black"
             type="button"
             onClick={handleSubmit}
           >
