@@ -95,17 +95,17 @@ const Notes = () => {
                 <Button
                   variant="outline"
                   size="icon"
-                  className="hover:text-yellow-500 shadow-none border-0 bg-transparent!"
+                  className="size-6 rounded-full border-0 bg-[#414141]! shadow-none duration-200 hover:bg-[#525252]!"
                   onClick={(event) => {
                     event.stopPropagation();
                     togglePin(note.id);
                   }}
                 >
                   {note.isPinned ? (
-                    // <FaStar className="text-yellow-500" />
+                    // <FaStar className="text-yellow-500 border" />
                     <FaRegStar className="text-yellow-500" />
                   ) : (
-                    <FaRegStar />
+                    <FaRegStar className="text-gray-200!" />
                   )}
                 </Button>
               </div>
