@@ -10,6 +10,7 @@ A collection of mini-projects built with **Next.js, React, TypeScript, and Zusta
 - **Todo App** — task management and state updates.
 - **Multi-step Form** — step navigation, form validation with Zod, and a success screen.
 - **Currency Converter** — currency conversion using live exchange rates from ExchangeRate-API, dynamic currency selection, and server-side API integration with Next.js.
+- **Notes App** — creating, editing, and deleting notes; searching by title and content; filtering by categories and pinned status; sorting notes by pinned status and creation date; and customizing note card colors.
 
 ## Tech Stack
 
@@ -51,4 +52,4 @@ Open [http://localhost:3000](http://localhost:3000) to view the application.
 
 ## Purpose
 
-This project was created as a hands-on learning experience to strengthen my understanding of Zustand and TypeScript, practice building reusable React components, work with external APIs, and explore scalable frontend architecture through practical examples. It also covers server-side API integration, environment variable security, and data handling in Next.js.
+This project was created as a hands-on learning experience to strengthen my understanding of Zustand and TypeScript, practice building reusable React components, work with external APIs, and explore scalable frontend architecture through practical examples. It also covers server-side API integration, environment variable security, data handling in Next.js, and building interactive user interfaces with persistent state management.
